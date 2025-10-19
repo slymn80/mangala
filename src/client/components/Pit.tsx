@@ -59,18 +59,18 @@ const Pit: React.FC<PitProps> = ({ pitIndex, stones, isActive }) => {
   return (
     <div className="relative flex flex-col items-center">
       {/* Kuyu İndeksi (Debug - isteğe bağlı) */}
-      <span className="text-xs text-gray-500 mb-1">{pitIndex}</span>
+      <span className="text-[10px] sm:text-xs text-gray-500 mb-0.5 sm:mb-1">{pitIndex}</span>
 
       {/* Kuyu */}
       <div
         onClick={handleClick}
         className={`
-          w-20 h-20 rounded-full
+          w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full
           flex items-center justify-center
           relative cursor-pointer
           transition-all duration-300
           ${canClick ? 'hover:scale-110 hover:shadow-lg' : 'opacity-60 cursor-not-allowed'}
-          ${isSelected ? 'ring-4 ring-yellow-400 shadow-glow scale-110' : ''}
+          ${isSelected ? 'ring-2 sm:ring-4 ring-yellow-400 shadow-glow scale-110' : ''}
           ${isActive && stones > 0 ? 'shadow-md' : ''}
         `}
         style={{
@@ -88,11 +88,11 @@ const Pit: React.FC<PitProps> = ({ pitIndex, stones, isActive }) => {
               <div className="flex items-center justify-center relative">
                 {stones <= 6 ? (
                   // 6 ve daha az taş için ayrı ayrı göster
-                  <div className="flex flex-wrap gap-0.5 w-14 h-14 items-center justify-center">
+                  <div className="flex flex-wrap gap-0.5 w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14 items-center justify-center">
                     {Array.from({ length: Math.min(stones, 6) }).map((_, i) => (
                       <div
                         key={i}
-                        className={`w-4 h-4 rounded-full ${stoneColorClass} shadow-sm`}
+                        className={`w-2 h-2 sm:w-3 sm:h-3 md:w-4 md:h-4 rounded-full ${stoneColorClass} shadow-sm`}
                         style={{
                           transform: `rotate(${i * 15}deg) translateY(${i % 2 ? -1 : 1}px)`,
                           zIndex: i
@@ -103,8 +103,8 @@ const Pit: React.FC<PitProps> = ({ pitIndex, stones, isActive }) => {
                 ) : (
                   // 7+ taş için sadece sayı göster
                   <div className="relative">
-                    <div className={`w-10 h-10 rounded-full ${stoneColorClass} shadow-lg`} />
-                    <span className="absolute inset-0 flex items-center justify-center text-white font-bold text-lg">
+                    <div className={`w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full ${stoneColorClass} shadow-lg`} />
+                    <span className="absolute inset-0 flex items-center justify-center text-white font-bold text-xs sm:text-sm md:text-lg">
                       {stones}
                     </span>
                   </div>

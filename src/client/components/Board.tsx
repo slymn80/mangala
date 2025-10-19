@@ -66,22 +66,22 @@ const Board: React.FC = () => {
       : 'bg-gradient-to-br from-blue-500 to-blue-700';
 
   return (
-    <div className="flex flex-col items-center justify-center gap-8 p-8">
+    <div className="flex flex-col items-center justify-center gap-4 md:gap-8 p-2 sm:p-4 md:p-8">
       {/* Player 2 Bilgileri */}
       <div className="text-center">
-        <h2 className={`text-2xl font-bold ${currentPlayer === 'player2' ? 'text-yellow-500 animate-pulse' : 'dark:text-white text-gray-900'}`}>
+        <h2 className={`text-lg sm:text-xl md:text-2xl font-bold ${currentPlayer === 'player2' ? 'text-yellow-500 animate-pulse' : 'dark:text-white text-gray-900'}`}>
           {game.player2Name}
           {currentPlayer === 'player2' && ` - ${t('game.yourTurn')}`}
         </h2>
-        <p className="text-sm dark:text-gray-400 text-gray-600">{t('game.player2')}</p>
+        <p className="text-xs sm:text-sm dark:text-gray-400 text-gray-600">{t('game.player2')}</p>
       </div>
 
       {/* Oyun Tahtası */}
-      <div className={`${boardBgClass} rounded-3xl shadow-2xl p-8 relative`}>
+      <div className={`${boardBgClass} rounded-2xl md:rounded-3xl shadow-2xl p-3 sm:p-4 md:p-8 relative w-full max-w-4xl`}>
         {/* İç Çerçeve */}
         <div className="absolute inset-4 border-4 border-yellow-600 rounded-2xl opacity-30"></div>
 
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-2 sm:gap-3 md:gap-6">
           {/* Player 2 Hazne (Sol) */}
           <Treasure
             stones={board.pits[13]}
@@ -90,9 +90,9 @@ const Board: React.FC = () => {
           />
 
           {/* Kuyular */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-2 sm:gap-3 md:gap-6">
             {/* Player 2 Kuyuları (Üst Sıra) */}
-            <div className="flex gap-4">
+            <div className="flex gap-1 sm:gap-2 md:gap-4">
               {player2Pits.map((pitIndex) => (
                 <Pit
                   key={pitIndex}
@@ -105,7 +105,7 @@ const Board: React.FC = () => {
             </div>
 
             {/* Player 1 Kuyuları (Alt Sıra) */}
-            <div className="flex gap-4">
+            <div className="flex gap-1 sm:gap-2 md:gap-4">
               {player1Pits.map((pitIndex) => (
                 <Pit
                   key={pitIndex}
@@ -134,26 +134,26 @@ const Board: React.FC = () => {
 
       {/* Player 1 Bilgileri */}
       <div className="text-center">
-        <h2 className={`text-2xl font-bold ${currentPlayer === 'player1' ? 'text-yellow-500 animate-pulse' : 'dark:text-white text-gray-900'}`}>
+        <h2 className={`text-lg sm:text-xl md:text-2xl font-bold ${currentPlayer === 'player1' ? 'text-yellow-500 animate-pulse' : 'dark:text-white text-gray-900'}`}>
           {game.player1Name}
           {currentPlayer === 'player1' && ` - ${t('game.yourTurn')}`}
         </h2>
-        <p className="text-sm dark:text-gray-400 text-gray-600">{t('game.player1')}</p>
+        <p className="text-xs sm:text-sm dark:text-gray-400 text-gray-600">{t('game.player1')}</p>
       </div>
 
       {/* Skor Tablosu */}
-      <div className="flex gap-8 mt-4">
-        <div className="card text-center">
-          <p className="text-sm dark:text-gray-400 text-gray-600">{game.player1Name}</p>
-          <p className="text-3xl font-bold text-blue-500">{game.scores.player1}</p>
+      <div className="flex gap-3 sm:gap-4 md:gap-8 mt-2 md:mt-4">
+        <div className="card text-center p-2 sm:p-3 md:p-4">
+          <p className="text-xs sm:text-sm dark:text-gray-400 text-gray-600">{game.player1Name}</p>
+          <p className="text-xl sm:text-2xl md:text-3xl font-bold text-blue-500">{game.scores.player1}</p>
         </div>
-        <div className="card text-center">
-          <p className="text-sm dark:text-gray-400 text-gray-600">{t('score.set')}</p>
-          <p className="text-2xl font-bold dark:text-white text-gray-900">{game.currentSetIndex + 1} / 5</p>
+        <div className="card text-center p-2 sm:p-3 md:p-4">
+          <p className="text-xs sm:text-sm dark:text-gray-400 text-gray-600">{t('score.set')}</p>
+          <p className="text-lg sm:text-xl md:text-2xl font-bold dark:text-white text-gray-900">{game.currentSetIndex + 1} / 5</p>
         </div>
-        <div className="card text-center">
-          <p className="text-sm dark:text-gray-400 text-gray-600">{game.player2Name}</p>
-          <p className="text-3xl font-bold text-red-500">{game.scores.player2}</p>
+        <div className="card text-center p-2 sm:p-3 md:p-4">
+          <p className="text-xs sm:text-sm dark:text-gray-400 text-gray-600">{game.player2Name}</p>
+          <p className="text-xl sm:text-2xl md:text-3xl font-bold text-red-500">{game.scores.player2}</p>
         </div>
       </div>
     </div>

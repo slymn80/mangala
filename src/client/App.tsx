@@ -54,45 +54,47 @@ const App: React.FC = () => {
     }}>
       {/* Header */}
       {!showMenu && game && (
-        <header className={`sticky top-0 z-50 backdrop-blur-sm border-b px-6 py-3 transition-colors ${
+        <header className={`sticky top-0 z-50 backdrop-blur-sm border-b px-2 sm:px-4 md:px-6 py-2 sm:py-3 transition-colors ${
           theme === 'dark'
             ? 'bg-gray-900 bg-opacity-90 border-gray-700'
             : 'bg-white bg-opacity-90 border-gray-300'
         }`}>
           <div className="max-w-7xl mx-auto flex items-center justify-between">
             {/* Sol: Logo ve Okul Adı */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
               <img
                 src="/assets/images/okul_logo.jpg"
                 alt="Okul Logo"
-                className="h-16 w-16 object-contain rounded-lg shadow-md"
+                className="h-10 w-10 sm:h-12 sm:w-12 md:h-16 md:w-16 object-contain rounded-lg shadow-md"
               />
               <div className="flex flex-col">
-                <h2 className="text-sm font-semibold text-blue-600 dark:text-blue-400">
+                <h2 className="text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400 hidden sm:block">
                   Özel Talgar 1 Nolu Yatılı Lisesi
                 </h2>
-                <h1 className="text-xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+                <h1 className="text-sm sm:text-base md:text-xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
                   MANGALA
                 </h1>
               </div>
-              <div className="text-sm text-gray-400 ml-2">
+              <div className="text-xs sm:text-sm text-gray-400 ml-1 sm:ml-2">
                 {t('score.set')} {game.currentSetIndex + 1} / 5
               </div>
             </div>
 
             {/* Sağ: Kontrol Butonları */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
               <button
                 onClick={handlePause}
-                className="btn btn-secondary px-4 py-2 text-sm"
+                className="btn btn-secondary px-2 sm:px-3 md:px-4 py-1 sm:py-2 text-xs sm:text-sm"
               >
-                {isPaused ? '▶️ ' + t('menu.continue') : '⏸️ ' + t('menu.pause')}
+                <span className="hidden sm:inline">{isPaused ? '▶️ ' + t('menu.continue') : '⏸️ ' + t('menu.pause')}</span>
+                <span className="sm:hidden">{isPaused ? '▶️' : '⏸️'}</span>
               </button>
               <button
                 onClick={handleQuitToMenu}
-                className="btn btn-danger px-4 py-2 text-sm"
+                className="btn btn-danger px-2 sm:px-3 md:px-4 py-1 sm:py-2 text-xs sm:text-sm"
               >
-                🏠 {t('menu.quit')}
+                <span className="hidden sm:inline">🏠 {t('menu.quit')}</span>
+                <span className="sm:hidden">🏠</span>
               </button>
             </div>
           </div>

@@ -39,36 +39,36 @@ const Menu: React.FC<MenuProps> = ({ onStartGame }) => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col p-4">
+    <div className="min-h-screen flex flex-col p-2 sm:p-4">
       {/* Logo ve Okul Adı - Sol Üst Köşe */}
-      <div className="flex items-center gap-3 mb-8 fade-in">
+      <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 md:mb-8 fade-in">
         <img
           src="/assets/images/okul_logo.jpg"
           alt="Okul Logo"
-          className="h-16 w-16 object-contain rounded-lg shadow-md"
+          className="h-12 w-12 sm:h-14 sm:w-14 md:h-16 md:w-16 object-contain rounded-lg shadow-md"
         />
         <div className="flex flex-col">
-          <h2 className="text-sm font-semibold text-blue-600 dark:text-blue-400">
+          <h2 className="text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400">
             Özel Talgar 1 Nolu Yatılı Lisesi
           </h2>
-          <h1 className="text-2xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+          <h1 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
             MANGALA
           </h1>
         </div>
       </div>
 
       {/* Ana İçerik - Ortalanmış */}
-      <div className="flex-1 flex items-center justify-center">
+      <div className="flex-1 flex items-center justify-center px-2">
         <div className="max-w-2xl w-full">
           {/* Başlık */}
-          <div className="text-center mb-8 fade-in">
-            <h2 className="text-4xl font-bold mb-2 bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 bg-clip-text text-transparent">
+          <div className="text-center mb-4 sm:mb-6 md:mb-8 fade-in">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 bg-clip-text text-transparent">
               {t('game.title')}
             </h2>
           </div>
 
         {/* Ana Kart */}
-        <div className="card mb-6 bounce-in">
+        <div className="card mb-4 sm:mb-6 bounce-in">
           {!showRules ? (
             <div className="space-y-6">
               {/* Oyun Modu */}
@@ -169,7 +169,7 @@ const Menu: React.FC<MenuProps> = ({ onStartGame }) => {
         </div>
 
         {/* Alt Butonlar */}
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4">
           <button
             onClick={() => setShowRules(!showRules)}
             className="btn btn-secondary"
