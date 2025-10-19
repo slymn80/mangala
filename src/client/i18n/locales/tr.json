@@ -1,0 +1,93 @@
+{
+  "game": {
+    "title": "Mangala - Türk Zeka ve Strateji Oyunu",
+    "player1": "Oyuncu 1",
+    "player2": "Oyuncu 2",
+    "bot": "Bilgisayar",
+    "yourTurn": "Sıra Sizde",
+    "opponentTurn": "Rakip Oynuyor",
+    "winner": "Kazanan",
+    "draw": "Berabere",
+    "gameOver": "Oyun Bitti"
+  },
+  "menu": {
+    "newGame": "Yeni Oyun",
+    "continue": "Devam Et",
+    "pause": "Duraklat",
+    "restart": "Yeniden Başlat",
+    "quit": "Çıkış"
+  },
+  "setup": {
+    "gameMode": "Oyun Modu",
+    "pvp": "İki Oyuncu",
+    "pve": "Bilgisayara Karşı",
+    "botDifficulty": "Bot Zorluğu",
+    "easy": "Kolay",
+    "medium": "Orta",
+    "hard": "Zor",
+    "player1Name": "Oyuncu 1 İsmi",
+    "player2Name": "Oyuncu 2 İsmi",
+    "startGame": "Oyunu Başlat"
+  },
+  "score": {
+    "set": "Set",
+    "score": "Skor",
+    "stones": "Taş"
+  },
+  "theme": {
+    "theme": "Tema",
+    "light": "Gündüz",
+    "dark": "Gece",
+    "boardStyle": "Tahta Stili",
+    "wood": "Ahşap",
+    "metal": "Metal",
+    "plastic": "Plastik",
+    "stoneColor": "Taş Rengi",
+    "red": "Kırmızı",
+    "white": "Beyaz",
+    "blue": "Mavi"
+  },
+  "settings": {
+    "settings": "Ayarlar",
+    "sound": "Ses",
+    "music": "Müzik",
+    "volume": "Ses Seviyesi",
+    "animations": "Animasyonlar",
+    "language": "Dil"
+  },
+  "rules": {
+    "title": "Oyun Kuralları",
+    "rule1": "1. Mangala iki kişi ile oynanır",
+    "rule2": "2. 12 küçük kuyu + 2 büyük hazne",
+    "rule3": "3. Sağdaki hazne kendi haznenizdir",
+    "rule4": "4. 48 taş ile oynanır (24+24)",
+    "rule5": "5-6. Her kuyuda başlangıçta 4 taş",
+    "rule7": "7. Önünüzdeki 6 kuyu sizin bölgeniz",
+    "rule8": "8. Haznede en çok taş toplayan kazanır",
+    "rule9": "9. Oyun sonunda en çok taş toplayan seti kazanır",
+    "rule10": "10. Kura ile başlanır",
+    "rule11": "11. İstediğiniz kuyudan taşları alın",
+    "rule12": "12. Saat tersi yönde (sağa) dağıtın",
+    "rule13": "13. Son taş haznede → ekstra tur",
+    "rule14": "14. Tek taş varsa aldığı kuyuya bırakmadan oynanabilir",
+    "rule15": "15. Son taş hazne değilse → sıra rakibe geçer",
+    "rule16": "16-17. Rakip bölgesine de dağıtabilirsiniz",
+    "rule18": "18. Rakip bölgesinde çift yaparsanız → taşları alın",
+    "rule19": "19. Kendi boş kuyuya son taş + karşı dolu → ikisini de alın",
+    "rule20": "20. Bir taraf boşalınca set biter",
+    "rule21": "21. Tahtadaki kalan taşlar kazanana",
+    "rule22": "22. 5 set oynanır",
+    "rule23": "23. Kazanan 1, berabere 0.5 puan alır"
+  },
+  "messages": {
+    "invalidMove": "Geçersiz hamle!",
+    "emptyPit": "Boş kuyu seçilemez",
+    "notYourTurn": "Şu an sizin sıranız değil",
+    "notYourPit": "Sadece kendi bölgenizdeki kuyuları seçebilirsiniz",
+    "extraTurn": "Ekstra tur kazandınız!",
+    "captured": "{{count}} taş yakaladınız!",
+    "setWon": "{{player}} seti kazandı!",
+    "gameWon": "{{player}} oyunu kazandı!",
+    "thinking": "Düşünüyor..."
+  }
+}

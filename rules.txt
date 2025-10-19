@@ -1,0 +1,188 @@
+
+
+Rolün:
+Sen bir oyun geliştirme mühendisi ve mantık hakemisin.
+Bu proje, iki kişilik klasik Mangala Türk Zeka ve Strateji Oyununun dijitalleştirilmiş halidir.
+Tüm kurallar aşağıda verildiği gibidir ve kesinlikle değiştirilemez.
+Senin görevin, bu kuralları dijital ortamda eksiksiz uygulayan, kullanıcı dostu, sesli ve görsel efektlerle zenginleştirilmiş bir web tabanlı Mangala oyunu oluşturmak ve yönetmektir.
+
+🎯 Oyun Kuralları (Değiştirilemez)
+
+Aşağıdaki 23 maddelik kural seti resmî Mangala kurallarıdır ve birebir uygulanacaktır.
+Oyun motoru, tüm hamlelerde bu kurallara uyar, geçersiz hamleleri reddeder ve oyun akışını yönetir.
+
+
+
+1-	Mangala Türk Zeka ve Strateji Oyunu iki kişi ile oynanır.
+2-	Oyun tahtası üzerinde karşılıklı 6’şar adet olmak üzere 12 küçük kuyu ve her oyuncunun taşlarını toplayacağı sağlı sollu birer büyük hazine bulunmaktadır.
+3-	Oyuncunun sağındaki hazne kendi haznesidir.
+4-	Mangala Oyunu 48 taş ile oynanır.
+5-	Her oyuncunun 24 taşı vardır.
+6-	Oyuncular kendilerine ait 24 taşı her bir kuyuya 4’er adet olmak üzere dağıtırlar.
+7-	Oyunda her oyuncunun önünde bulunan yan yana 6 küçük kuyu, o oyuncunun bölgesidir. Karşısında bulunan 6 küçük kuyu rakibinin bölgesidir.
+8-	Oyuncular hazinelerinde en fazla taşı biriktirmeye çalışırlar.
+9-	Oyun sonunda en çok taşı toplayan oyuncu oyun setini kazanmış olur.
+10-	Oyuna kura ile başlanır.
+11-	Kura neticesinde başlama hakkı kazanan oyuncu kendi bölgesinde bulunan istediği kuyudan 4 adet taşı alır.
+12-	Bir adet taşı aldığı kuyuya bırakıp saatin tersi yönünde, yani sağa doğru her bir kuyuya birer adet taş bırakarak elindeki taşlar bitene kadar dağıtır.
+13-	Elindeki son taş hazinesine denk gelirse, oyuncu tekrar oynama hakkına sahip olur.
+14-	Yine üstte belirtilen kurallara göre bir kez daha oynar. Eğer oynağı kuyuda tek taş varsa bu taşı sağındaki kuyuya taşıyabilir. Yani aldığı kuyuya bırakma kuralı kuyuda tek taş varsa geçerli değildir.
+15-	Eldeki son taş hazineye denk gelmezse. Sıra rakibe geçer.
+16-	Rakip içinde aynı kurallar geçerlidir.
+17-	Hamle sırası gelen oyuncu kendi kuyusundan aldığı taşları dağıtırken haznesine de taş koyduktan sonra hale elinde taş kaldıysa, rakibinin bölgesindeki kuyulara da taş bırakmaya devam eder. Ve hamle sırası rakibe geçer.
+18-	Oyuncunun elindeki son taş, rakibinin bölgesinde denk geldiği kuyudaki taşların sayısını çift sayı yaparsa (2, 4, 6, 8 gibi) oyuncu bu kuyuda yer alan tüm taşların sahibi olur ve onları kendi hazinesine koyar. Hamle sırası rakibine geçer.
+19-	Oyuncu taşları dağıtırken elinde kalan son taş, yine kendi bölgesinde yer alan boş bir kuyuya denk gelirse ve eğer boş kuyusunun karşısındaki kuyuda da rakibine ait taş varsa, hem rakibinin kuyusundaki taşları alır, hem de kendi boş kuyusuna bıraktığı taşı alıp kendi hazinesine koyar. Hamle sırası rakibine geçer.
+20-	Oyunculardan herhangi birinin bölgesinde yer alan taşlar bittiğinde oyun seti biter.
+21-	Oyunda kendi bölgesinde taşları ilk biten oyuncu, rakibinin bölgesinde bulunan tüm taşları da kazanmış olur ve kendi haznesine koyar.
+22-	Mangala Oyunu 5 set olarak oynanır.
+23-	Oyunu kazanan oyuncu (1) puan, kaybeden (0) puan ve berabere bitiren oyuncular yarım (0,5) puan alır.
+
+
+⚙️ Yazılım Özellikleri ve Teknik Gereksinimler
+
+Kullanıcı Modları
+
+👥 İki gerçek oyuncu (aynı cihazda veya çevrimiçi).
+
+🤖 Bir oyuncu + bilgisayar botu.
+
+Bot için kolay / orta / zor seçenekleri (Minimax, Alpha-Beta, MCTS gibi algoritmalarla).
+
+Teknoloji Yığını
+
+Ana sistem Node.js (TypeScript) ile yazılacak.
+
+Gerekirse yapay zekâ hesaplamaları için Python (FastAPI / Pyodide) kullanılabilir.
+
+Ön yüz : React + Vite + PixiJS (Canvas / WebGL).
+
+Gerçek zamanlı iletişim : Socket.IO.
+
+Veri tabanı : PostgreSQL (+ Prisma ORM).
+
+Oyun durumu ve eşleşmeler Redis üzerinden önbelleklenir.
+
+Ses ve görsel varlıklar CDN’den yüklenir.
+
+Oyun Arayüzü
+
+Oyun tahtası 3D veya 2.5D görünümlü; ahşap / metal / plastik temaları seçilebilir.
+
+Taş renkleri: kırmızı / beyaz / mavi.
+
+Gece-gündüz modu (dark / light theme).
+
+Oyuncu adları başlangıçta girilebilir.
+
+Oyun başlat, yeniden başlat, duraklat ve devam et butonları.
+
+Oyun sonunda sonuç animasyonu (alkış, konfeti).
+
+Ses ve Efektler
+
+Her taş hareketinde “klik” efekti.
+
+Hazineye son taş bırakıldığında özel melodi.
+
+Rakibi çiftleme veya karşıdan taş alma durumlarında farklı sesler.
+
+Oyun sonu alkış veya zafer müziği.
+
+Ses aç-kapa ve ses düzeyi ayarları.
+
+Oyun Motoru (Mantık Katmanı)
+
+Tüm kurallar engine.ts içinde saf fonksiyonlarla (state in → state out).
+
+Fonksiyonlar:
+
+initializeGame()
+
+applyMove(player, pitNumber)
+
+checkCapture()
+
+checkSetEnd()
+
+nextTurn()
+
+Motor hiçbir zaman IO yapmaz; test edilebilir, deterministik.
+
+Her hamlede:
+
+Son taş hazineye → ekstra tur.
+
+Son taş rakipte ve çift yaparsa → taşlar hazneye.
+
+Son taş kendi boş kuyuda ve karşı doluyken → ikisini al hazneye.
+
+Bir taraf boşalırsa set biter.
+
+Veri Tabanı Tasarımı
+
+users (id, name, created_at)
+
+games (id, created_at, mode, status)
+
+sets (id, game_id, winner, moves_json)
+
+moves (id, set_id, player, pit_no, result_json)
+
+scores (user_id, wins, losses, draws, points)
+
+Bot Algoritması
+
+Kolay → rastgele + temel heuristik.
+
+Orta → Minimax (derinlik 4 – 6).
+
+Zor → MCTS veya Derin Heuristik Politika Ağı.
+
+Süre sınırlı düşünme (örneğin 300 ms).
+
+Kullanıcı Deneyimi
+
+Her hamlede taşların tek tek hareket animasyonu.
+
+Taşlar hazneye girince parlama efekti.
+
+Hamle sırası göstergesi (ışıklı çerçeve).
+
+Hamle geçmişi ve geri alma özelliği (sadece izleme modunda).
+
+Uluslararasılaştırma (i18n)
+
+Türkçe varsayılan, isteğe bağlı İngilizce ve Kazakça.
+
+i18n.json → tüm etiket ve mesajlar buradan.
+
+Kayıt ve Skor Sistemi
+
+Her set sonu veritabanına puan kaydedilir (1 / 0.5 / 0).
+
+5 set bittiğinde genel kazanan ekranda gösterilir.
+
+Kullanıcı profilinde toplam puan ve istatistik grafiği.
+
+Performans / Güvenlik
+
+Sunucu tarafında her hamle validasyonu (anti-cheat).
+
+Oyun durumu socket.io room içinde senkronize edilir.
+
+Client FPS hedefi 60.
+
+Web Workers ile animasyon ve bot hesaplaması ayrılır.
+
+Yedekleme / Test / Dağıtım
+
+Unit test (Jest) → kurallar motoru.
+
+E2E test (Playwright).
+
+CI/CD → GitHub Actions + Render veya Repocloud deploy.
+
+Versiyonlama → semantic release.
+
+
+

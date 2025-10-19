@@ -1,0 +1,93 @@
+{
+  "game": {
+    "title": "Mangala - Turkish Strategy Board Game",
+    "player1": "Player 1",
+    "player2": "Player 2",
+    "bot": "Computer",
+    "yourTurn": "Your Turn",
+    "opponentTurn": "Opponent Playing",
+    "winner": "Winner",
+    "draw": "Draw",
+    "gameOver": "Game Over"
+  },
+  "menu": {
+    "newGame": "New Game",
+    "continue": "Continue",
+    "pause": "Pause",
+    "restart": "Restart",
+    "quit": "Quit"
+  },
+  "setup": {
+    "gameMode": "Game Mode",
+    "pvp": "Two Players",
+    "pve": "vs Computer",
+    "botDifficulty": "Bot Difficulty",
+    "easy": "Easy",
+    "medium": "Medium",
+    "hard": "Hard",
+    "player1Name": "Player 1 Name",
+    "player2Name": "Player 2 Name",
+    "startGame": "Start Game"
+  },
+  "score": {
+    "set": "Set",
+    "score": "Score",
+    "stones": "Stones"
+  },
+  "theme": {
+    "theme": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "boardStyle": "Board Style",
+    "wood": "Wood",
+    "metal": "Metal",
+    "plastic": "Plastic",
+    "stoneColor": "Stone Color",
+    "red": "Red",
+    "white": "White",
+    "blue": "Blue"
+  },
+  "settings": {
+    "settings": "Settings",
+    "sound": "Sound",
+    "music": "Music",
+    "volume": "Volume",
+    "animations": "Animations",
+    "language": "Language"
+  },
+  "rules": {
+    "title": "Game Rules",
+    "rule1": "1. Mangala is played by two players",
+    "rule2": "2. 12 small pits + 2 large treasures",
+    "rule3": "3. Right treasure is yours",
+    "rule4": "4. Played with 48 stones (24+24)",
+    "rule5": "5-6. Each pit starts with 4 stones",
+    "rule7": "7. 6 pits in front of you are your zone",
+    "rule8": "8. Player with most stones in treasure wins",
+    "rule9": "9. Player with most stones wins the set",
+    "rule10": "10. Game starts with a draw",
+    "rule11": "11. Pick stones from your pit",
+    "rule12": "12. Distribute counter-clockwise (right)",
+    "rule13": "13. Last stone in treasure → extra turn",
+    "rule14": "14. Single stone can skip starting pit",
+    "rule15": "15. Last stone not in treasure → turn passes",
+    "rule16": "16-17. Can distribute to opponent's zone",
+    "rule18": "18. Make even in opponent zone → capture",
+    "rule19": "19. Last stone in your empty pit + opposite full → capture both",
+    "rule20": "20. Set ends when one side is empty",
+    "rule21": "21. Remaining stones go to winner",
+    "rule22": "22. Play 5 sets",
+    "rule23": "23. Winner gets 1 point, draw 0.5 points"
+  },
+  "messages": {
+    "invalidMove": "Invalid move!",
+    "emptyPit": "Cannot select empty pit",
+    "notYourTurn": "Not your turn",
+    "notYourPit": "Can only select pits in your zone",
+    "extraTurn": "Extra turn!",
+    "captured": "Captured {{count}} stones!",
+    "setWon": "{{player}} won the set!",
+    "gameWon": "{{player}} won the game!",
+    "thinking": "Thinking..."
+  }
+}
