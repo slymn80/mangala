@@ -142,7 +142,7 @@ const App: React.FC = () => {
       {/* Footer */}
       <footer className="text-center py-6 text-sm text-gray-500">
         <p>Mangala - Türk Zeka ve Strateji Oyunu © 2025</p>
-        <p className="mt-1">23 maddelik resmi kurallarla</p>
+        <p className="mt-1">by Süleyman Tongut</p>
       </footer>
     </div>
   );
