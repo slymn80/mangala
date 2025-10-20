@@ -30,6 +30,14 @@ export function getBotMove(
     return validMoves[0];
   }
 
+  // İlk hamle mi? (Set'in ilk hamlesi)
+  const isFirstMove = set.moves.length === 0;
+
+  // İlk hamle ise rastgele seç (çeşitlilik için)
+  if (isFirstMove) {
+    return validMoves[Math.floor(Math.random() * validMoves.length)];
+  }
+
   switch (difficulty) {
     case 'easy':
       return getEasyMove(set, player, validMoves);
