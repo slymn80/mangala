@@ -17,6 +17,11 @@ interface TreasureProps {
 const Treasure: React.FC<TreasureProps> = ({ stones, player, isActive }) => {
   const { t } = useTranslation();
   const stoneColor = useGameStore((state) => state.stoneColor);
+  const animatedPit = useGameStore((state) => state.animatedPit);
+
+  // Treasure indeksleri: player1 = 6, player2 = 13
+  const treasureIndex = player === 'player1' ? 6 : 13;
+  const isReceivingStone = animatedPit === treasureIndex;
 
   const getStoneColorClass = () => {
     // Player 1 (sağ hazne): beyaz taşlar
@@ -38,13 +43,16 @@ const Treasure: React.FC<TreasureProps> = ({ stones, player, isActive }) => {
           w-12 h-28 sm:w-20 sm:h-40 md:w-24 md:h-48 rounded-2xl sm:rounded-3xl
           flex flex-col items-center justify-center
           relative
-          transition-all duration-300
+          transition-all duration-200
           ${isActive ? 'shadow-xl ring-1 sm:ring-2 ring-yellow-400' : 'shadow-lg'}
+          ${isReceivingStone ? 'ring-4 ring-cyan-400 scale-110 animate-pulse' : ''}
         `}
         style={{
           background: `linear-gradient(180deg, #cd853f 0%, #8b4513 100%)`,
           boxShadow: isActive
             ? '0 8px 16px rgba(0, 0, 0, 0.3), inset 0 -8px 16px rgba(0, 0, 0, 0.4), 0 0 20px rgba(251, 191, 36, 0.5)'
+            : isReceivingStone
+            ? '0 8px 16px rgba(0, 0, 0, 0.3), inset 0 -8px 16px rgba(0, 0, 0, 0.4), 0 0 30px rgba(34, 211, 238, 0.9)'
             : 'inset 0 -8px 16px rgba(0, 0, 0, 0.4), 0 4px 8px rgba(0, 0, 0, 0.2)'
         }}
       >

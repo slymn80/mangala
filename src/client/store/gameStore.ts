@@ -25,6 +25,7 @@ interface GameStore {
   message: string | null;
   isBotThinking: boolean;
   lastMove: { startPit: number; endPit: number } | null;
+  animatedPit: number | null; // Animasyon sırasında hangi kuyu ışıldıyor
 
   // Settings
   soundEnabled: boolean;
@@ -63,6 +64,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
   message: null,
   isBotThinking: false,
   lastMove: null,
+  animatedPit: null,
 
   // Default Settings
   soundEnabled: true,
@@ -76,7 +78,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
   // Actions
   startNewGame: (params) => {
     const game = initializeGame(params);
-    set({ game, selectedPit: null, message: null, isAnimating: false, isBotThinking: false, lastMove: null });
+    set({ game, selectedPit: null, message: null, isAnimating: false, isBotThinking: false, lastMove: null, animatedPit: null });
     // Bot sırası kontrolü artık Board.tsx useEffect'inde yapılıyor
   },
 
@@ -108,12 +110,23 @@ export const useGameStore = create<GameStore>((set, get) => ({
       return;
     }
 
-    // Her taş hareketi için bubble pop sesi çal
-    const { soundEnabled, volume } = get();
-    if (result.stoneMoves && result.stoneMoves.length > 0 && soundEnabled) {
-      result.stoneMoves.forEach((_, index) => {
+    // Her taş hareketi için bubble pop sesi çal VE kuyuyu animasyonla vurgula
+    const { soundEnabled, volume, animationsEnabled } = get();
+    if (result.stoneMoves && result.stoneMoves.length > 0) {
+      result.stoneMoves.forEach((pitIndex, index) => {
         setTimeout(() => {
-          playSound('/assets/sounds/bubble-pop-04-323580.mp3', volume, soundEnabled);
+          // Ses çal
+          if (soundEnabled) {
+            playSound('/assets/sounds/bubble-pop-04-323580.mp3', volume, soundEnabled);
+          }
+
+          // Animasyon aktifse kuyuyu vurgula
+          if (animationsEnabled) {
+            set({ animatedPit: pitIndex });
+            setTimeout(() => {
+              set({ animatedPit: null });
+            }, 200); // 200ms vurgu süresi
+          }
         }, index * 150); // Her taş arası 150ms gecikme
       });
     }

@@ -23,10 +23,12 @@ const Pit: React.FC<PitProps> = ({ pitIndex, stones, isActive, isStartPit = fals
   const selectPit = useGameStore((state) => state.selectPit);
   const isAnimating = useGameStore((state) => state.isAnimating);
   const stoneColor = useGameStore((state) => state.stoneColor);
+  const animatedPit = useGameStore((state) => state.animatedPit);
   const { playSound } = useSounds();
 
   const isSelected = selectedPit === pitIndex;
   const canClick = isActive && stones > 0 && !isAnimating;
+  const isReceivingStone = animatedPit === pitIndex; // Bu kuyu şu anda taş alıyor mu?
 
   const handleClick = () => {
     if (!canClick) return;
@@ -72,17 +74,20 @@ const Pit: React.FC<PitProps> = ({ pitIndex, stones, isActive, isStartPit = fals
           w-10 h-10 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full
           flex items-center justify-center
           relative cursor-pointer
-          transition-all duration-300
+          transition-all duration-200
           ${canClick ? 'hover:scale-110 hover:shadow-lg' : 'opacity-60 cursor-not-allowed'}
           ${isSelected ? 'ring-2 sm:ring-4 ring-yellow-400 shadow-glow scale-110' : ''}
           ${isStartPit ? 'ring-2 sm:ring-3 ring-green-500' : ''}
           ${isEndPit ? 'ring-2 sm:ring-3 ring-purple-500' : ''}
+          ${isReceivingStone ? 'ring-4 ring-cyan-400 scale-125 animate-pulse' : ''}
           ${isActive && stones > 0 ? 'shadow-md' : ''}
         `}
         style={{
           background: 'radial-gradient(circle at 30% 30%, #d2691e, #8b4513)',
           boxShadow: isSelected
             ? '0 0 20px rgba(251, 191, 36, 0.8), inset 0 -4px 8px rgba(0, 0, 0, 0.4)'
+            : isReceivingStone
+            ? '0 0 25px rgba(34, 211, 238, 0.9), inset 0 -4px 8px rgba(0, 0, 0, 0.4)'
             : isStartPit
             ? '0 0 15px rgba(34, 197, 94, 0.6), inset 0 -4px 8px rgba(0, 0, 0, 0.4)'
             : isEndPit
