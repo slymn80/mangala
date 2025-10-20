@@ -17,8 +17,8 @@ const MoveHistory: React.FC = () => {
   const moves = currentSet.moves;
 
   return (
-    <div className="card p-3 max-h-[70vh] overflow-y-auto w-48">
-      <h3 className="font-bold text-sm mb-3 dark:text-white text-gray-900 border-b dark:border-gray-600 border-gray-300 pb-2">
+    <div className="card p-2 sm:p-3 max-h-[40vh] lg:max-h-[70vh] overflow-y-auto w-full lg:w-48">
+      <h3 className="font-bold text-xs sm:text-sm mb-2 sm:mb-3 dark:text-white text-gray-900 border-b dark:border-gray-600 border-gray-300 pb-1 sm:pb-2">
         {t('moveHistory.title') || 'Hamle Geçmişi'}
       </h3>
 

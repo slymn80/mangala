@@ -193,7 +193,7 @@ const Board: React.FC = () => {
 
       {/* Oyun Tahtası - Ortada */}
       <div
-        className="rounded-2xl sm:rounded-3xl shadow-2xl p-3 sm:p-4 md:p-6 lg:p-8 relative"
+        className="rounded-2xl sm:rounded-3xl shadow-2xl p-2 sm:p-3 md:p-5 lg:p-7 xl:p-8 relative"
         style={{
           background: 'linear-gradient(135deg, #8b4513 0%, #a0522d 50%, #8b4513 100%)',
           boxShadow: '0 20px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)'
@@ -284,9 +284,14 @@ const Board: React.FC = () => {
           {game.player1Name}
         </h3>
       </div>
+
+      {/* Hamle Geçmişi - Mobilde tahtanın altında */}
+      <div className="lg:hidden w-full max-w-md mx-auto">
+        <MoveHistory />
+      </div>
       </div>
 
-      {/* Hamle Geçmişi - Sağda */}
+      {/* Hamle Geçmişi - Masaüstünde sağda */}
       <div className="hidden lg:block">
         <MoveHistory />
       </div>

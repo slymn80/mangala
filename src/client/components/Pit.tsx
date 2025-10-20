@@ -87,7 +87,7 @@ const Pit: React.FC<PitProps> = ({ pitIndex, stones, isActive, isStartPit = fals
       <div
         onClick={handleClick}
         className={`
-          w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full
+          w-10 h-10 sm:w-14 sm:h-14 md:w-18 md:h-18 lg:w-22 lg:h-22 xl:w-24 xl:h-24 rounded-full
           flex items-center justify-center
           relative cursor-pointer
           transition-all duration-200
@@ -120,11 +120,11 @@ const Pit: React.FC<PitProps> = ({ pitIndex, stones, isActive, isStartPit = fals
               <div className="flex items-center justify-center relative">
                 {stones <= 6 ? (
                   // 6 ve daha az taş için ayrı ayrı göster
-                  <div className="flex flex-wrap gap-0.5 w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-14 lg:h-14 items-center justify-center">
+                  <div className="flex flex-wrap gap-0.5 w-5 h-5 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-12 lg:h-12 xl:w-14 xl:h-14 items-center justify-center">
                     {Array.from({ length: Math.min(stones, 6) }).map((_, i) => (
                       <div
                         key={i}
-                        className={`w-1.5 h-1.5 sm:w-2 sm:h-2 md:w-3 md:h-3 lg:w-4 lg:h-4 rounded-full ${stoneColorClass} shadow-sm`}
+                        className={`w-1 h-1 sm:w-1.5 sm:h-1.5 md:w-2 md:h-2 lg:w-3 lg:h-3 xl:w-4 xl:h-4 rounded-full ${stoneColorClass} shadow-sm`}
                         style={{
                           transform: `rotate(${i * 15}deg) translateY(${i % 2 ? -1 : 1}px)`,
                           zIndex: i
@@ -135,9 +135,9 @@ const Pit: React.FC<PitProps> = ({ pitIndex, stones, isActive, isStartPit = fals
                 ) : (
                   // 7+ taş için sadece sayı göster
                   <div className="relative">
-                    <div className={`w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 rounded-full ${stoneColorClass} shadow-lg`} />
+                    <div className={`w-4 h-4 sm:w-5 sm:h-5 md:w-7 md:h-7 lg:w-9 lg:h-9 xl:w-10 xl:h-10 rounded-full ${stoneColorClass} shadow-lg`} />
                     <span
-                      className={`absolute inset-0 flex items-center justify-center font-bold text-[10px] sm:text-xs md:text-sm lg:text-lg ${
+                      className={`absolute inset-0 flex items-center justify-center font-bold text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-lg ${
                         pitIndex >= 0 && pitIndex <= 5 ? 'text-gray-900' : 'text-white'
                       }`}
                       style={{
