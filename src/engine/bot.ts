@@ -43,27 +43,66 @@ export function getBotMove(
 }
 
 /**
- * KOLAY BOT: Rastgele + basit öncelikler
+ * KOLAY BOT: Hazne odaklı + basit stratejiler
  */
 function getEasyMove(set: SetState, player: Player, validMoves: number[]): number {
-  // %70 rastgele, %30 akıllı
-  if (Math.random() < 0.7) {
-    return validMoves[Math.floor(Math.random() * validMoves.length)];
-  }
-
-  // Basit öncelik: Hazneye ulaşan hamle varsa onu seç
   const playerTreasure = player === 'player1' ? 6 : 13;
+  const opponentTreasure = player === 'player1' ? 13 : 6;
 
+  // 1. ÖNCELİK: Hazneye ulaşan hamle (ekstra tur)
   for (const move of validMoves) {
     const stones = set.board.pits[move];
     const landingIndex = (move + stones) % 14;
 
     if (landingIndex === playerTreasure) {
-      return move;
+      return move; // Ekstra tur kazanmak en önemli
     }
   }
 
-  return validMoves[Math.floor(Math.random() * validMoves.length)];
+  // 2. ÖNCELİK: En çok taş hazneye götüren hamle
+  let bestMove = validMoves[0];
+  let maxTreasureGain = 0;
+
+  for (const move of validMoves) {
+    const stones = set.board.pits[move];
+    let treasureGain = 0;
+
+    // Kaç taş hazneye gidecek?
+    for (let i = 1; i <= stones; i++) {
+      const targetIndex = (move + i) % 14;
+      if (targetIndex === playerTreasure) {
+        treasureGain++;
+      }
+    }
+
+    if (treasureGain > maxTreasureGain) {
+      maxTreasureGain = treasureGain;
+      bestMove = move;
+    }
+  }
+
+  // Hazneye taş giden hamle varsa onu oyna
+  if (maxTreasureGain > 0) {
+    return bestMove;
+  }
+
+  // 3. ÖNCELİK: %50 şans rastgele (kolay olsun diye)
+  if (Math.random() < 0.5) {
+    return validMoves[Math.floor(Math.random() * validMoves.length)];
+  }
+
+  // 4. Aksi halde en çok taşlı kuyuyu seç
+  bestMove = validMoves[0];
+  let maxStones = set.board.pits[bestMove];
+
+  for (const move of validMoves) {
+    if (set.board.pits[move] > maxStones) {
+      maxStones = set.board.pits[move];
+      bestMove = move;
+    }
+  }
+
+  return bestMove;
 }
 
 /**
@@ -268,50 +307,94 @@ function alphaBeta(
 }
 
 /**
- * Basit board değerlendirmesi
+ * Basit board değerlendirmesi - Hazne odaklı
  */
 function evaluateBoard(board: BoardState, player: Player): number {
   const playerTreasure = player === 'player1' ? 6 : 13;
   const opponentTreasure = player === 'player1' ? 13 : 6;
 
-  return board.pits[playerTreasure] - board.pits[opponentTreasure];
-}
+  // Hazne farkı çok önemli (ağırlık: 20)
+  const treasureDiff = (board.pits[playerTreasure] - board.pits[opponentTreasure]) * 20;
 
-/**
- * Gelişmiş board değerlendirmesi (Zor bot için)
- */
-function evaluateBoardAdvanced(board: BoardState, player: Player): number {
-  const playerTreasure = player === 'player1' ? 6 : 13;
-  const opponentTreasure = player === 'player1' ? 13 : 6;
+  // Tahtadaki taşlar da önemli (ağırlık: 1)
+  const playerPits = player === 'player1' ? [0, 1, 2, 3, 4, 5] : [7, 8, 9, 10, 11, 12];
+  const opponentPits = player === 'player1' ? [7, 8, 9, 10, 11, 12] : [0, 1, 2, 3, 4, 5];
 
-  const playerPits = player === 'player1' ? [0, 5] : [7, 12];
-  const opponentPits = player === 'player1' ? [7, 12] : [0, 5];
-
-  // Hazne farkı (en önemli)
-  const treasureDiff = board.pits[playerTreasure] - board.pits[opponentTreasure];
-
-  // Tahtadaki taş sayısı
   let playerBoardStones = 0;
   let opponentBoardStones = 0;
 
-  for (let i = playerPits[0]; i <= playerPits[1]; i++) {
+  for (const i of playerPits) {
     playerBoardStones += board.pits[i];
   }
 
-  for (let i = opponentPits[0]; i <= opponentPits[1]; i++) {
+  for (const i of opponentPits) {
     opponentBoardStones += board.pits[i];
   }
 
   const boardDiff = playerBoardStones - opponentBoardStones;
 
-  // Stratejik pozisyonlar (hazneye yakın kuyular daha değerli)
+  return treasureDiff + boardDiff;
+}
+
+/**
+ * Gelişmiş board değerlendirmesi - Kazanma odaklı (Zor bot için)
+ */
+function evaluateBoardAdvanced(board: BoardState, player: Player): number {
+  const playerTreasure = player === 'player1' ? 6 : 13;
+  const opponentTreasure = player === 'player1' ? 13 : 6;
+
+  const playerPits = player === 'player1' ? [0, 1, 2, 3, 4, 5] : [7, 8, 9, 10, 11, 12];
+  const opponentPits = player === 'player1' ? [7, 8, 9, 10, 11, 12] : [0, 1, 2, 3, 4, 5];
+
+  // 1. HAZNE FARKI (en önemli - ağırlık: 50)
+  const treasureDiff = (board.pits[playerTreasure] - board.pits[opponentTreasure]) * 50;
+
+  // 2. TAHTADAKI TAŞ FARKI (ağırlık: 3)
+  let playerBoardStones = 0;
+  let opponentBoardStones = 0;
+
+  for (const i of playerPits) {
+    playerBoardStones += board.pits[i];
+  }
+
+  for (const i of opponentPits) {
+    opponentBoardStones += board.pits[i];
+  }
+
+  const boardDiff = (playerBoardStones - opponentBoardStones) * 3;
+
+  // 3. STRATEJİK POZISYONLAR - Hazneye yakın kuyular (ağırlık: 5)
   let strategicValue = 0;
   const strategicIndices = player === 'player1' ? [4, 5] : [11, 12];
 
   for (const idx of strategicIndices) {
-    strategicValue += board.pits[idx] * 2;
+    strategicValue += board.pits[idx] * 5;
   }
 
-  // Toplam skor
-  return treasureDiff * 10 + boardDiff * 2 + strategicValue;
+  // 4. EKSTRA TUR POTANSİYELİ - Hazneye tam ulaşacak taşlar (ağırlık: 10)
+  let extraTurnPotential = 0;
+  for (const idx of playerPits) {
+    const stones = board.pits[idx];
+    if (stones > 0) {
+      const landingIndex = (idx + stones) % 14;
+      if (landingIndex === playerTreasure) {
+        extraTurnPotential += 10; // Ekstra tur kazanma şansı
+      }
+    }
+  }
+
+  // 5. YAKALAMA POTANSİYELİ - Boş kuyular ve karşı dolu kuyular (ağırlık: 8)
+  let capturePotential = 0;
+  for (const idx of playerPits) {
+    if (board.pits[idx] === 0) {
+      // Boş kuyu varsa, karşısındaki rakip kuyusu dolu mu?
+      const oppositeIdx = 12 - idx;
+      if (board.pits[oppositeIdx] > 0) {
+        capturePotential += board.pits[oppositeIdx] * 8;
+      }
+    }
+  }
+
+  // Toplam skor (kazanma odaklı)
+  return treasureDiff + boardDiff + strategicValue + extraTurnPotential + capturePotential;
 }
