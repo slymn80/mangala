@@ -22,9 +22,11 @@
     "pvp": "Two Players",
     "pve": "vs Computer",
     "botDifficulty": "Bot Difficulty",
+    "beginner": "Beginner",
     "easy": "Easy",
     "medium": "Medium",
     "hard": "Hard",
+    "master": "Master",
     "player1Name": "Player 1 Name",
     "player2Name": "Player 2 Name",
     "startGame": "Start Game"

@@ -1,9 +1,13 @@
 /**
  * MANGALA BOT AI
- * Üç zorluk seviyesi: Kolay, Orta, Zor
- * - Kolay: Rastgele + basit heuristik
- * - Orta: Minimax (derinlik 4-6)
- * - Zor: Alpha-Beta Pruning + Gelişmiş heuristik
+ * Beş zorluk seviyesi: Acemi, Kolay, Orta, Zor, Usta
+ * - Acemi (Beginner): Tamamen rastgele hamleler
+ * - Kolay (Easy): Basit heuristik + düşük derinlik (depth 1)
+ * - Orta (Medium): Minimax + orta derinlik (depth 3)
+ * - Zor (Hard): Alpha-Beta + yüksek derinlik (depth 5)
+ * - Usta (Master): Alpha-Beta + çok yüksek derinlik + gelişmiş heuristik (depth 7)
+ *
+ * NOT: Tüm seviyelerde hamle hızı aynıdır, sadece algoritma derinliği değişir
  */
 
 import type { BoardState, BotDifficulty, Player, SetState } from '../types/game.types';
@@ -11,12 +15,13 @@ import { getValidMoves, applyMove } from './engine';
 
 /**
  * Bot'un hamlesini hesapla
+ * Tüm seviyeler için sabit hamle hızı (maxThinkTime)
  */
 export function getBotMove(
   gameState: any,
   setIndex: number,
   difficulty: BotDifficulty,
-  maxThinkTime: number = 300
+  maxThinkTime: number = 1000 // Tüm seviyeler için aynı düşünme süresi
 ): number {
   const set = gameState.sets[setIndex];
   const player = set.currentPlayer;
@@ -30,28 +35,34 @@ export function getBotMove(
     return validMoves[0];
   }
 
-  // İlk hamle mi? (Set'in ilk hamlesi)
-  const isFirstMove = set.moves.length === 0;
-
-  // İlk hamle ise rastgele seç (çeşitlilik için)
-  if (isFirstMove) {
-    return validMoves[Math.floor(Math.random() * validMoves.length)];
-  }
-
+  // Zorluk seviyesine göre hamle seç
   switch (difficulty) {
+    case 'beginner':
+      return getBeginnerMove(validMoves);
     case 'easy':
       return getEasyMove(set, player, validMoves);
     case 'medium':
       return getMediumMove(gameState, setIndex, player, validMoves, maxThinkTime);
     case 'hard':
       return getHardMove(gameState, setIndex, player, validMoves, maxThinkTime);
+    case 'master':
+      return getMasterMove(gameState, setIndex, player, validMoves, maxThinkTime);
     default:
       return validMoves[0];
   }
 }
 
 /**
- * KOLAY BOT: Hazne odaklı + basit stratejiler
+ * ACEMİ BOT: Tamamen rastgele hamleler
+ * Depth: 0 (algoritma yok, sadece rastgele)
+ */
+function getBeginnerMove(validMoves: number[]): number {
+  return validMoves[Math.floor(Math.random() * validMoves.length)];
+}
+
+/**
+ * KOLAY BOT: Basit heuristik + depth 1
+ * Sadece bir hamle ilerisini düşünür
  */
 function getEasyMove(set: SetState, player: Player, validMoves: number[]): number {
   const playerTreasure = player === 'player1' ? 6 : 13;
@@ -89,23 +100,33 @@ function getEasyMove(set: SetState, player: Player, validMoves: number[]): numbe
     }
   }
 
-  // Hazneye taş giden hamle varsa onu oyna
+  // 3. ÖNCELİK: Hazneye taş giden hamle varsa onu oyna
   if (maxTreasureGain > 0) {
     return bestMove;
   }
 
-  // 3. ÖNCELİK: %50 şans rastgele (kolay olsun diye)
-  if (Math.random() < 0.5) {
-    return validMoves[Math.floor(Math.random() * validMoves.length)];
-  }
-
-  // 4. Aksi halde en çok taşlı kuyuyu seç
+  // 4. ÖNCELİK: En basit skorlama - en çok taş veren hamle
   bestMove = validMoves[0];
-  let maxStones = set.board.pits[bestMove];
+  let bestScore = -Infinity;
 
   for (const move of validMoves) {
-    if (set.board.pits[move] > maxStones) {
-      maxStones = set.board.pits[move];
+    // Basit skorlama: sadece anında kazanılan taşlara bak
+    const stones = set.board.pits[move];
+    let score = 0;
+
+    // Kaç taş hazneye gidecek?
+    for (let i = 1; i <= stones; i++) {
+      const targetIndex = (move + i) % 14;
+      if (targetIndex === playerTreasure) {
+        score += 10; // Hazneye her taş 10 puan
+      }
+    }
+
+    // Toplam taş sayısı da önemli (ama daha az)
+    score += stones;
+
+    if (score > bestScore) {
+      bestScore = score;
       bestMove = move;
     }
   }
@@ -114,7 +135,8 @@ function getEasyMove(set: SetState, player: Player, validMoves: number[]): numbe
 }
 
 /**
- * ORTA BOT: Minimax algoritması (düşük depth - stabil)
+ * ORTA BOT: Minimax algoritması + depth 3
+ * Üç hamle ilerisini düşünür
  */
 function getMediumMove(
   gameState: any,
@@ -123,7 +145,7 @@ function getMediumMove(
   validMoves: number[],
   maxThinkTime: number
 ): number {
-  const depth = 2; // Daha stabil için depth düşürüldü
+  const depth = 3; // Orta seviye için depth 3
   let bestMove = validMoves[0];
   let bestScore = -Infinity;
 
@@ -144,7 +166,8 @@ function getMediumMove(
 }
 
 /**
- * ZOR BOT: Alpha-Beta Pruning (orta depth - stabil)
+ * ZOR BOT: Alpha-Beta Pruning + depth 5
+ * Beş hamle ilerisini düşünür, budama ile optimize edilmiş
  */
 function getHardMove(
   gameState: any,
@@ -153,7 +176,47 @@ function getHardMove(
   validMoves: number[],
   maxThinkTime: number
 ): number {
-  const depth = 3; // Daha stabil için depth düşürüldü
+  const depth = 5; // Zor seviye için depth 5
+  let bestMove = validMoves[0];
+  let bestScore = -Infinity;
+
+  const startTime = Date.now();
+
+  for (const move of validMoves) {
+    if (Date.now() - startTime > maxThinkTime) break;
+
+    const score = alphaBeta(
+      gameState,
+      setIndex,
+      move,
+      depth - 1,
+      -Infinity,
+      Infinity,
+      false,
+      player
+    );
+
+    if (score > bestScore) {
+      bestScore = score;
+      bestMove = move;
+    }
+  }
+
+  return bestMove;
+}
+
+/**
+ * USTA BOT: Alpha-Beta Pruning + depth 7 + gelişmiş heuristik
+ * Yedi hamle ilerisini düşünür, en gelişmiş değerlendirme fonksiyonu
+ */
+function getMasterMove(
+  gameState: any,
+  setIndex: number,
+  player: Player,
+  validMoves: number[],
+  maxThinkTime: number
+): number {
+  const depth = 7; // Usta seviye için depth 7
   let bestMove = validMoves[0];
   let bestScore = -Infinity;
 

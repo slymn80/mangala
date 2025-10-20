@@ -104,18 +104,18 @@ const Menu: React.FC<MenuProps> = ({ onStartGame }) => {
               {gameMode === 'pve' && (
                 <div className="slide-up">
                   <label className="block text-sm font-semibold mb-3 dark:text-white text-gray-900">{t('setup.botDifficulty')}</label>
-                  <div className="grid grid-cols-3 gap-3">
-                    {(['easy', 'medium', 'hard'] as BotDifficulty[]).map((difficulty) => (
+                  <div className="grid grid-cols-5 gap-2">
+                    {(['beginner', 'easy', 'medium', 'hard', 'master'] as BotDifficulty[]).map((difficulty) => (
                       <button
                         key={difficulty}
                         onClick={() => setBotDifficulty(difficulty)}
-                        className={`p-3 rounded-lg border-2 transition-all ${
+                        className={`p-2 sm:p-3 rounded-lg border-2 transition-all ${
                           botDifficulty === difficulty
                             ? 'border-green-500 bg-green-500 bg-opacity-20'
                             : 'dark:border-gray-600 border-gray-400 dark:hover:border-gray-400 hover:border-gray-600'
                         }`}
                       >
-                        <span className="dark:text-white text-gray-900">{t(`setup.${difficulty}`)}</span>
+                        <span className="text-xs sm:text-sm dark:text-white text-gray-900">{t(`setup.${difficulty}`)}</span>
                       </button>
                     ))}
                   </div>

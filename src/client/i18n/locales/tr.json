@@ -22,9 +22,11 @@
     "pvp": "İki Oyuncu",
     "pve": "Bilgisayara Karşı",
     "botDifficulty": "Bot Zorluğu",
+    "beginner": "Acemi",
     "easy": "Kolay",
     "medium": "Orta",
     "hard": "Zor",
+    "master": "Usta",
     "player1Name": "Oyuncu 1 İsmi",
     "player2Name": "Oyuncu 2 İsmi",
     "startGame": "Oyunu Başlat"
