@@ -87,7 +87,7 @@ const Pit: React.FC<PitProps> = ({ pitIndex, stones, isActive, isStartPit = fals
       <div
         onClick={handleClick}
         className={`
-          w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full
+          w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full
           flex items-center justify-center
           relative cursor-pointer
           transition-all duration-200
@@ -120,11 +120,11 @@ const Pit: React.FC<PitProps> = ({ pitIndex, stones, isActive, isStartPit = fals
               <div className="flex items-center justify-center relative">
                 {stones <= 6 ? (
                   // 6 ve daha az taş için ayrı ayrı göster
-                  <div className="flex flex-wrap gap-0.5 w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14 items-center justify-center">
+                  <div className="flex flex-wrap gap-0.5 w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-14 lg:h-14 items-center justify-center">
                     {Array.from({ length: Math.min(stones, 6) }).map((_, i) => (
                       <div
                         key={i}
-                        className={`w-2 h-2 sm:w-3 sm:h-3 md:w-4 md:h-4 rounded-full ${stoneColorClass} shadow-sm`}
+                        className={`w-1.5 h-1.5 sm:w-2 sm:h-2 md:w-3 md:h-3 lg:w-4 lg:h-4 rounded-full ${stoneColorClass} shadow-sm`}
                         style={{
                           transform: `rotate(${i * 15}deg) translateY(${i % 2 ? -1 : 1}px)`,
                           zIndex: i
@@ -135,9 +135,9 @@ const Pit: React.FC<PitProps> = ({ pitIndex, stones, isActive, isStartPit = fals
                 ) : (
                   // 7+ taş için sadece sayı göster
                   <div className="relative">
-                    <div className={`w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full ${stoneColorClass} shadow-lg`} />
+                    <div className={`w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 rounded-full ${stoneColorClass} shadow-lg`} />
                     <span
-                      className={`absolute inset-0 flex items-center justify-center font-bold text-xs sm:text-sm md:text-lg ${
+                      className={`absolute inset-0 flex items-center justify-center font-bold text-[10px] sm:text-xs md:text-sm lg:text-lg ${
                         pitIndex >= 0 && pitIndex <= 5 ? 'text-gray-900' : 'text-white'
                       }`}
                       style={{

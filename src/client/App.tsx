@@ -85,52 +85,54 @@ const App: React.FC = () => {
     }}>
       {/* Header */}
       {!showMenu && game && (
-        <header className={`sticky top-0 z-50 backdrop-blur-sm border-b px-2 sm:px-4 md:px-6 py-2 sm:py-3 transition-colors ${
+        <header className={`sticky top-0 z-50 backdrop-blur-sm border-b px-2 sm:px-4 md:px-6 py-2 transition-colors ${
           theme === 'dark'
             ? 'bg-gray-900 bg-opacity-90 border-gray-700'
             : 'bg-white bg-opacity-90 border-gray-300'
         }`}>
-          <div className="max-w-7xl mx-auto flex items-center justify-between">
-            {/* Sol: Logo ve Okul Adı */}
-            <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
-              <img
-                src="/assets/images/okul_logo.jpg"
-                alt="Okul Logo"
-                className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 object-contain rounded-lg shadow-md flex-shrink-0"
-              />
-              <div className="flex flex-col min-w-0">
-                <h2 className="text-[9px] sm:text-xs font-semibold text-blue-600 dark:text-blue-400 hidden md:block truncate">
-                  Özel Talgar 1 Nolu Yatılı Lisesi
-                </h2>
-                <h1 className="text-xs sm:text-sm md:text-base font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
-                  MANGALA
-                </h1>
-                <p className="text-[8px] sm:text-[9px] md:text-xs text-red-500 font-medium">by Süleyman Tongut</p>
+          <div className="max-w-7xl mx-auto">
+            {/* Üst Satır: Logo ve Okul Adı (her zaman tek satır) */}
+            <div className="flex items-center justify-between mb-2 md:mb-0">
+              <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
+                <img
+                  src="/assets/images/okul_logo.jpg"
+                  alt="Okul Logo"
+                  className="h-7 w-7 sm:h-9 sm:w-9 md:h-12 md:w-12 object-contain rounded-lg shadow-md flex-shrink-0"
+                />
+                <div className="flex flex-col min-w-0">
+                  <h2 className="text-[8px] sm:text-[9px] font-semibold text-blue-600 dark:text-blue-400 hidden md:block truncate">
+                    Özel Talgar 1 Nolu Yatılı Lisesi
+                  </h2>
+                  <h1 className="text-[11px] sm:text-xs md:text-base font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+                    MANGALA
+                  </h1>
+                  <p className="text-[7px] sm:text-[8px] md:text-xs text-red-500 font-medium">by Süleyman Tongut</p>
+                </div>
               </div>
-              <div className="text-[10px] sm:text-xs text-gray-400 whitespace-nowrap">
+              <div className="text-[9px] sm:text-[10px] md:text-xs text-gray-400 whitespace-nowrap ml-2">
                 {t('score.set')} {game.currentSetIndex + 1}/5
               </div>
             </div>
 
-            {/* Sağ: Kontrol Butonları */}
-            <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
+            {/* Alt Satır: Kontrol Butonları (mobilde tam genişlik, masaüstünde sağda) */}
+            <div className="flex items-center justify-center md:justify-end gap-1 sm:gap-2 md:gap-3 md:absolute md:top-2 md:right-2 md:px-4">
               <button
                 onClick={handleRefresh}
-                className="btn btn-success px-2 sm:px-3 md:px-4 py-1 sm:py-2 text-xs sm:text-sm"
+                className="btn btn-success px-2 sm:px-3 md:px-4 py-1 text-[10px] sm:text-xs md:text-sm"
               >
                 <span className="hidden sm:inline">🔄 {t('menu.newGame')}</span>
                 <span className="sm:hidden">🔄</span>
               </button>
               <button
                 onClick={handlePause}
-                className="btn btn-secondary px-2 sm:px-3 md:px-4 py-1 sm:py-2 text-xs sm:text-sm"
+                className="btn btn-secondary px-2 sm:px-3 md:px-4 py-1 text-[10px] sm:text-xs md:text-sm"
               >
                 <span className="hidden sm:inline">{isPaused ? '▶️ ' + t('menu.continue') : '⏸️ ' + t('menu.pause')}</span>
                 <span className="sm:hidden">{isPaused ? '▶️' : '⏸️'}</span>
               </button>
               <button
                 onClick={handleQuitToMenu}
-                className="btn btn-danger px-2 sm:px-3 md:px-4 py-1 sm:py-2 text-xs sm:text-sm"
+                className="btn btn-danger px-2 sm:px-3 md:px-4 py-1 text-[10px] sm:text-xs md:text-sm"
               >
                 <span className="hidden sm:inline">🏠 {t('menu.quit')}</span>
                 <span className="sm:hidden">🏠</span>

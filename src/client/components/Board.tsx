@@ -94,9 +94,9 @@ const Board: React.FC = () => {
       : 'bg-gradient-to-br from-blue-500 to-blue-700';
 
   return (
-    <div className="flex flex-row items-start justify-center gap-6 md:gap-8 p-4 md:p-8 min-h-[80vh]">
+    <div className="flex flex-row items-start justify-center gap-3 sm:gap-4 md:gap-6 lg:gap-8 p-2 sm:p-4 md:p-6 lg:p-8 min-h-[80vh]">
       {/* Ana oyun alanı - Sol ve Orta */}
-      <div className="flex flex-col items-center justify-center gap-6 md:gap-8">
+      <div className="flex flex-col items-center justify-center gap-3 sm:gap-4 md:gap-6 lg:gap-8">
       {/* Settings Button - Sağ Üst */}
       <button
         onClick={() => setShowSettings(!showSettings)}
@@ -166,34 +166,34 @@ const Board: React.FC = () => {
       )}
 
       {/* Skor Tablosu - EN ÜSTTE */}
-      <div className="flex gap-3 sm:gap-4 md:gap-8">
-        <div className="card text-center p-3 md:p-4 min-w-[120px]">
-          <p className="text-xs sm:text-sm dark:text-gray-400 text-gray-600 mb-1">{game.player1Name}</p>
-          <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-500">{game.scores.player1}</p>
+      <div className="flex gap-2 sm:gap-3 md:gap-4 lg:gap-8">
+        <div className="card text-center p-2 sm:p-3 md:p-4 min-w-[80px] sm:min-w-[100px] md:min-w-[120px]">
+          <p className="text-[10px] sm:text-xs md:text-sm dark:text-gray-400 text-gray-600 mb-1">{game.player1Name}</p>
+          <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-blue-500">{game.scores.player1}</p>
         </div>
-        <div className="card text-center p-3 md:p-4 min-w-[120px]">
-          <p className="text-xs sm:text-sm dark:text-gray-400 text-gray-600 mb-1">{t('score.set')}</p>
-          <p className="text-xl sm:text-2xl md:text-3xl font-bold dark:text-white text-gray-900">{game.currentSetIndex + 1} / 5</p>
-          <p className="text-xs sm:text-sm text-yellow-500 mt-2 animate-pulse font-semibold">
+        <div className="card text-center p-2 sm:p-3 md:p-4 min-w-[80px] sm:min-w-[100px] md:min-w-[120px]">
+          <p className="text-[10px] sm:text-xs md:text-sm dark:text-gray-400 text-gray-600 mb-1">{t('score.set')}</p>
+          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold dark:text-white text-gray-900">{game.currentSetIndex + 1} / 5</p>
+          <p className="text-[10px] sm:text-xs md:text-sm text-yellow-500 mt-1 sm:mt-2 animate-pulse font-semibold">
             {t('messages.turnIndicator', { player: currentPlayer === 'player1' ? game.player1Name : game.player2Name })}
           </p>
         </div>
-        <div className="card text-center p-3 md:p-4 min-w-[120px]">
-          <p className="text-xs sm:text-sm dark:text-gray-400 text-gray-600 mb-1">{game.player2Name}</p>
-          <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-red-500">{game.scores.player2}</p>
+        <div className="card text-center p-2 sm:p-3 md:p-4 min-w-[80px] sm:min-w-[100px] md:min-w-[120px]">
+          <p className="text-[10px] sm:text-xs md:text-sm dark:text-gray-400 text-gray-600 mb-1">{game.player2Name}</p>
+          <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-red-500">{game.scores.player2}</p>
         </div>
       </div>
 
       {/* Player 2 İsmi - Üstte */}
       <div className="text-center">
-        <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-red-500 drop-shadow-md">
+        <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-red-500 drop-shadow-md">
           {game.player2Name}
         </h3>
       </div>
 
       {/* Oyun Tahtası - Ortada */}
       <div
-        className="rounded-3xl shadow-2xl p-6 md:p-8 relative"
+        className="rounded-2xl sm:rounded-3xl shadow-2xl p-3 sm:p-4 md:p-6 lg:p-8 relative"
         style={{
           background: 'linear-gradient(135deg, #8b4513 0%, #a0522d 50%, #8b4513 100%)',
           boxShadow: '0 20px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)'
@@ -201,7 +201,7 @@ const Board: React.FC = () => {
       >
         {/* Ahşap Doku Efekti */}
         <div
-          className="absolute inset-0 rounded-3xl opacity-20 pointer-events-none"
+          className="absolute inset-0 rounded-2xl sm:rounded-3xl opacity-20 pointer-events-none"
           style={{
             backgroundImage: `repeating-linear-gradient(
               90deg,
@@ -214,7 +214,7 @@ const Board: React.FC = () => {
         />
 
         {/* İç Çerçeve - Dekoratif */}
-        <div className="absolute inset-4 border-4 border-yellow-700 rounded-2xl opacity-40"
+        <div className="absolute inset-2 sm:inset-3 md:inset-4 border-2 sm:border-3 md:border-4 border-yellow-700 rounded-xl sm:rounded-2xl opacity-40"
           style={{ boxShadow: 'inset 0 2px 8px rgba(0,0,0,0.3)' }}
         />
 
@@ -223,12 +223,12 @@ const Board: React.FC = () => {
           <img
             src="/assets/images/okul_logo.jpg"
             alt="Logo"
-            className="w-32 h-32 md:w-40 md:h-40 object-contain rounded-full"
+            className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 object-contain rounded-full"
             style={{ filter: 'brightness(1.5) contrast(0.8)' }}
           />
         </div>
 
-        <div className="relative z-10 flex items-center gap-4 md:gap-8">
+        <div className="relative z-10 flex items-center gap-2 sm:gap-3 md:gap-4 lg:gap-8">
           {/* Player 2 Hazne (Sol) */}
           <Treasure
             stones={board.pits[13]}
@@ -237,9 +237,9 @@ const Board: React.FC = () => {
           />
 
           {/* Kuyular */}
-          <div className="flex flex-col gap-2 sm:gap-3 md:gap-6">
+          <div className="flex flex-col gap-1 sm:gap-2 md:gap-3 lg:gap-6">
             {/* Player 2 Kuyuları (Üst Sıra) */}
-            <div className="flex gap-1 sm:gap-2 md:gap-4">
+            <div className="flex gap-0.5 sm:gap-1 md:gap-2 lg:gap-4">
               {player2Pits.map((pitIndex) => (
                 <Pit
                   key={pitIndex}
@@ -254,7 +254,7 @@ const Board: React.FC = () => {
             </div>
 
             {/* Player 1 Kuyuları (Alt Sıra) */}
-            <div className="flex gap-1 sm:gap-2 md:gap-4">
+            <div className="flex gap-0.5 sm:gap-1 md:gap-2 lg:gap-4">
               {player1Pits.map((pitIndex) => (
                 <Pit
                   key={pitIndex}
@@ -280,7 +280,7 @@ const Board: React.FC = () => {
 
       {/* Player 1 İsmi - Altta */}
       <div className="text-center">
-        <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-blue-500 drop-shadow-md">
+        <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-blue-500 drop-shadow-md">
           {game.player1Name}
         </h3>
       </div>

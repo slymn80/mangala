@@ -40,7 +40,7 @@ const Treasure: React.FC<TreasureProps> = ({ stones, player, isActive }) => {
       {/* Hazne - Ahşap görünümlü büyük delik */}
       <div
         className={`
-          w-24 h-40 sm:w-28 sm:h-48 md:w-32 md:h-56 rounded-3xl
+          w-20 h-32 sm:w-24 sm:h-40 md:w-28 md:h-48 lg:w-32 lg:h-56 rounded-3xl
           flex flex-col items-center justify-center
           relative
           transition-all duration-200
@@ -61,9 +61,9 @@ const Treasure: React.FC<TreasureProps> = ({ stones, player, isActive }) => {
         <div className="relative flex flex-col items-center justify-center h-full">
           {/* Taş yığını görsel efekti */}
           {stones > 0 && (
-            <div className="absolute inset-0 flex items-end justify-center pb-3 sm:pb-4 md:pb-6">
+            <div className="absolute inset-0 flex items-end justify-center pb-2 sm:pb-3 md:pb-4 lg:pb-6">
               <div
-                className={`w-8 sm:w-10 md:w-14 rounded-t-full bg-gradient-to-br ${getStoneColorClass()} opacity-70`}
+                className={`w-6 sm:w-8 md:w-10 lg:w-14 rounded-t-full bg-gradient-to-br ${getStoneColorClass()} opacity-70`}
                 style={{
                   height: `${Math.min((stones / 48) * 100, 90)}%`,
                   transition: 'height 0.5s ease-out'
@@ -76,7 +76,7 @@ const Treasure: React.FC<TreasureProps> = ({ stones, player, isActive }) => {
           <div
             className={`
               relative z-10
-              w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 rounded-full
+              w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 rounded-full
               flex items-center justify-center
               bg-gradient-to-br ${getStoneColorClass()}
               shadow-lg
@@ -84,7 +84,7 @@ const Treasure: React.FC<TreasureProps> = ({ stones, player, isActive }) => {
               ${playerColor === 'blue' ? 'border-blue-400' : 'border-red-400'}
             `}
           >
-            <span className={`text-sm sm:text-lg md:text-2xl font-bold drop-shadow-lg ${
+            <span className={`text-xs sm:text-sm md:text-lg lg:text-2xl font-bold drop-shadow-lg ${
               player === 'player1' ? 'text-white' : 'text-gray-800'
             }`}>
               {stones}
