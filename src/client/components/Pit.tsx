@@ -48,7 +48,7 @@ const Pit: React.FC<PitProps> = ({ pitIndex, stones, isActive }) => {
       case 'white':
         return 'bg-gradient-to-br from-gray-100 to-gray-300 border border-gray-400';
       case 'blue':
-        return 'bg-gradient-to-br from-blue-500 to-blue-700';
+        return 'bg-gradient-to-br from-blue-700 to-blue-900';
       default:
         return 'bg-gradient-to-br from-red-500 to-red-700';
     }

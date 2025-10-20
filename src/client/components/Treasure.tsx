@@ -25,7 +25,7 @@ const Treasure: React.FC<TreasureProps> = ({ stones, player, isActive }) => {
       case 'white':
         return 'from-gray-100 to-gray-300';
       case 'blue':
-        return 'from-blue-500 to-blue-700';
+        return 'from-blue-700 to-blue-900';
       default:
         return 'from-red-500 to-red-700';
     }
