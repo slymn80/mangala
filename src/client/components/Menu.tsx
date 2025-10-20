@@ -23,6 +23,7 @@ const Menu: React.FC<MenuProps> = ({ onStartGame }) => {
   const [player1Name, setPlayer1Name] = useState('Oyuncu 1');
   const [player2Name, setPlayer2Name] = useState('Oyuncu 2');
   const [showRules, setShowRules] = useState(false);
+  const [showBotInfo, setShowBotInfo] = useState(false);
 
   const handleStartGame = () => {
     startNewGame({
@@ -154,7 +155,7 @@ const Menu: React.FC<MenuProps> = ({ onStartGame }) => {
                 {t('setup.startGame')}
               </button>
             </div>
-          ) : (
+          ) : showRules ? (
             <div className="space-y-4">
               <h3 className="text-2xl font-bold mb-4 dark:text-white text-gray-900">{t('rules.title')}</h3>
               <div className="max-h-96 overflow-y-auto space-y-2 text-sm">
@@ -172,18 +173,78 @@ const Menu: React.FC<MenuProps> = ({ onStartGame }) => {
                 </p>
               </div>
             </div>
-          )}
+          ) : showBotInfo ? (
+            <div className="space-y-4">
+              <h3 className="text-2xl font-bold mb-4 dark:text-white text-gray-900">🤖 Bot Algoritmaları</h3>
+              <div className="max-h-96 overflow-y-auto space-y-4 text-sm">
+                <div className="p-3 rounded-lg bg-gray-100 dark:bg-gray-800">
+                  <h4 className="font-bold text-lg mb-2 text-green-600 dark:text-green-400">🌱 Acemi (Beginner)</h4>
+                  <p className="dark:text-gray-300 text-gray-700 mb-1"><strong>Algoritma:</strong> Rastgele Seçim</p>
+                  <p className="dark:text-gray-300 text-gray-700 mb-1"><strong>Derinlik:</strong> 0 (Strateji yok)</p>
+                  <p className="dark:text-gray-300 text-gray-700">Tamamen rastgele hamleler yapar. Oyunu öğrenenler için ideal.</p>
+                </div>
+
+                <div className="p-3 rounded-lg bg-gray-100 dark:bg-gray-800">
+                  <h4 className="font-bold text-lg mb-2 text-blue-600 dark:text-blue-400">⭐ Kolay (Easy)</h4>
+                  <p className="dark:text-gray-300 text-gray-700 mb-1"><strong>Algoritma:</strong> Basit Heuristik</p>
+                  <p className="dark:text-gray-300 text-gray-700 mb-1"><strong>Derinlik:</strong> 1 (Bir hamle ilerisi)</p>
+                  <p className="dark:text-gray-300 text-gray-700">Hazneye ulaşmayı önceliklendirir. Basit ama tutarlı hamleler yapar.</p>
+                </div>
+
+                <div className="p-3 rounded-lg bg-gray-100 dark:bg-gray-800">
+                  <h4 className="font-bold text-lg mb-2 text-yellow-600 dark:text-yellow-400">⚡ Orta (Medium)</h4>
+                  <p className="dark:text-gray-300 text-gray-700 mb-1"><strong>Algoritma:</strong> Minimax</p>
+                  <p className="dark:text-gray-300 text-gray-700 mb-1"><strong>Derinlik:</strong> 3 (Üç hamle ilerisi)</p>
+                  <p className="dark:text-gray-300 text-gray-700">Rakibin olası hamlelerini düşünür. Dengeli strateji ile oynar.</p>
+                </div>
+
+                <div className="p-3 rounded-lg bg-gray-100 dark:bg-gray-800">
+                  <h4 className="font-bold text-lg mb-2 text-orange-600 dark:text-orange-400">🔥 Zor (Hard)</h4>
+                  <p className="dark:text-gray-300 text-gray-700 mb-1"><strong>Algoritma:</strong> Alpha-Beta Pruning</p>
+                  <p className="dark:text-gray-300 text-gray-700 mb-1"><strong>Derinlik:</strong> 5 (Beş hamle ilerisi)</p>
+                  <p className="dark:text-gray-300 text-gray-700">Akıllı budama ile hızlı ve etkili. İyi oyuncular için zorluk.</p>
+                </div>
+
+                <div className="p-3 rounded-lg bg-gray-100 dark:bg-gray-800">
+                  <h4 className="font-bold text-lg mb-2 text-purple-600 dark:text-purple-400">👑 Usta (Master)</h4>
+                  <p className="dark:text-gray-300 text-gray-700 mb-1"><strong>Algoritma:</strong> Alpha-Beta + Gelişmiş Heuristik</p>
+                  <p className="dark:text-gray-300 text-gray-700 mb-1"><strong>Derinlik:</strong> 7 (Yedi hamle ilerisi)</p>
+                  <p className="dark:text-gray-300 text-gray-700">En gelişmiş algoritma. Stratejik pozisyonları değerlendirir, yakalama fırsatlarını hesaplar.</p>
+                </div>
+              </div>
+              <div className="mt-4 pt-4 border-t dark:border-gray-600 border-gray-300">
+                <p className="text-xs dark:text-gray-400 text-gray-600">
+                  💡 <strong>Not:</strong> Tüm botlar aynı hızda düşünür, fark sadece algoritma derinliğindedir.
+                </p>
+              </div>
+            </div>
+          ) : null}
         </div>
 
         {/* Alt Butonlar */}
-        <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4">
+        <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4 mb-2">
           <button
-            onClick={() => setShowRules(!showRules)}
+            onClick={() => {
+              setShowRules(!showRules);
+              setShowBotInfo(false);
+            }}
             className="btn btn-secondary"
           >
             {showRules ? '⬅️ Geri' : '📖 Kurallar'}
           </button>
 
+          <button
+            onClick={() => {
+              setShowBotInfo(!showBotInfo);
+              setShowRules(false);
+            }}
+            className="btn btn-secondary"
+          >
+            {showBotInfo ? '⬅️ Geri' : '🤖 Bot Bilgisi'}
+          </button>
+        </div>
+
+        <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4">
           <button
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
             className="btn btn-secondary"
