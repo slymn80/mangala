@@ -341,9 +341,15 @@ function alphaBeta(
   if (isMaximizing) {
     let maxEval = -Infinity;
     for (const move of validMoves) {
+      // Yeni gameState oluştur - sets array'inde sadece simüle edilen set'i tut
+      const newGameState = {
+        ...gameState,
+        sets: [{ ...currentSet, board: result.board, currentPlayer: nextPlayer }],
+        currentSetIndex: 0 // Tek set olduğu için index 0
+      };
       const evaluation = alphaBeta(
-        { ...gameState, sets: [{ ...currentSet, board: result.board, currentPlayer: nextPlayer }] },
-        0,
+        newGameState,
+        0, // setIndex artık 0 çünkü yukarıda tek set'li bir gameState oluşturduk
         move,
         depth - 1,
         alpha,
@@ -359,9 +365,15 @@ function alphaBeta(
   } else {
     let minEval = Infinity;
     for (const move of validMoves) {
+      // Yeni gameState oluştur - sets array'inde sadece simüle edilen set'i tut
+      const newGameState = {
+        ...gameState,
+        sets: [{ ...currentSet, board: result.board, currentPlayer: nextPlayer }],
+        currentSetIndex: 0 // Tek set olduğu için index 0
+      };
       const evaluation = alphaBeta(
-        { ...gameState, sets: [{ ...currentSet, board: result.board, currentPlayer: nextPlayer }] },
-        0,
+        newGameState,
+        0, // setIndex artık 0 çünkü yukarıda tek set'li bir gameState oluşturduk
         move,
         depth - 1,
         alpha,
