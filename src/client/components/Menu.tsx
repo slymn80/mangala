@@ -164,6 +164,13 @@ const Menu: React.FC<MenuProps> = ({ onStartGame }) => {
                   </p>
                 ))}
               </div>
+              <div className="mt-4 pt-4 border-t dark:border-gray-600 border-gray-300">
+                <p className="text-xs dark:text-gray-400 text-gray-600">
+                  Kaynak: <a href="https://www.mangala.com.tr/mangala-nasil-oynanir" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600 underline">
+                    www.mangala.com.tr/mangala-nasil-oynanir
+                  </a>
+                </p>
+              </div>
             </div>
           )}
         </div>
