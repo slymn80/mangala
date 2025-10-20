@@ -7,7 +7,7 @@ import { persist } from 'zustand/middleware';
 import type { GameState, SetState } from '../../types/game.types';
 import { initializeGame, applyMove, updateGameScore } from '../../engine/engine';
 import { getBotMove } from '../../engine/bot';
-import i18n from '../i18n/i18n';
+import i18n from '../i18n/config';
 
 // Ses çalma helper fonksiyonu
 const playSound = (soundFile: string, volume: number, enabled: boolean) => {
