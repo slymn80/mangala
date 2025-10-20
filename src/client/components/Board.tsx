@@ -167,7 +167,7 @@ const Board: React.FC = () => {
 
       {/* Oyun Tahtası - Ortada */}
       <div
-        className="rounded-3xl shadow-2xl p-6 md:p-8 relative w-full max-w-6xl landscape:order-2"
+        className="rounded-3xl shadow-2xl p-6 md:p-8 relative"
         style={{
           background: 'linear-gradient(135deg, #8b4513 0%, #a0522d 50%, #8b4513 100%)',
           boxShadow: '0 20px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)'

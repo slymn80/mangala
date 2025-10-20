@@ -46,14 +46,14 @@ const Pit: React.FC<PitProps> = ({ pitIndex, stones, isActive, isStartPit = fals
   };
 
   const getStoneColorClass = () => {
-    // Player 1 (alt sıra, 0-5): beyaz taşlar
-    // Player 2 (üst sıra, 7-12): siyah taşlar
+    // Player 1 (alt sıra, 0-5): siyah taşlar
+    // Player 2 (üst sıra, 7-12): beyaz taşlar
     if (pitIndex >= 0 && pitIndex <= 5) {
-      // Player 1 - Beyaz taşlar
-      return 'bg-gradient-to-br from-gray-100 to-gray-300 border border-gray-400';
-    } else if (pitIndex >= 7 && pitIndex <= 12) {
-      // Player 2 - Siyah taşlar
+      // Player 1 - Siyah taşlar
       return 'bg-gradient-to-br from-gray-700 to-gray-900';
+    } else if (pitIndex >= 7 && pitIndex <= 12) {
+      // Player 2 - Beyaz taşlar
+      return 'bg-gradient-to-br from-gray-100 to-gray-300 border border-gray-400';
     }
 
     // Fallback (hazne için, ama bu component'te hazne yok)
@@ -123,7 +123,7 @@ const Pit: React.FC<PitProps> = ({ pitIndex, stones, isActive, isStartPit = fals
                   <div className="relative">
                     <div className={`w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full ${stoneColorClass} shadow-lg`} />
                     <span className={`absolute inset-0 flex items-center justify-center font-bold text-xs sm:text-sm md:text-lg ${
-                      pitIndex >= 0 && pitIndex <= 5 ? 'text-gray-800' : 'text-white'
+                      pitIndex >= 0 && pitIndex <= 5 ? 'text-white' : 'text-gray-800'
                     }`}>
                       {stones}
                     </span>

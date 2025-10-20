@@ -24,12 +24,12 @@ const Treasure: React.FC<TreasureProps> = ({ stones, player, isActive }) => {
   const isReceivingStone = animatedPit === treasureIndex;
 
   const getStoneColorClass = () => {
-    // Player 1 (sağ hazne): beyaz taşlar
-    // Player 2 (sol hazne): siyah taşlar
+    // Player 1 (sağ hazne): siyah taşlar
+    // Player 2 (sol hazne): beyaz taşlar
     if (player === 'player1') {
-      return 'from-gray-100 to-gray-300';
-    } else {
       return 'from-gray-700 to-gray-900';
+    } else {
+      return 'from-gray-100 to-gray-300';
     }
   };
 
@@ -85,7 +85,7 @@ const Treasure: React.FC<TreasureProps> = ({ stones, player, isActive }) => {
             `}
           >
             <span className={`text-sm sm:text-lg md:text-2xl font-bold drop-shadow-lg ${
-              player === 'player1' ? 'text-gray-800' : 'text-white'
+              player === 'player1' ? 'text-white' : 'text-gray-800'
             }`}>
               {stones}
             </span>
