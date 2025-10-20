@@ -210,7 +210,14 @@ export const useGameStore = create<GameStore>()(
       } else if (result.capturedStones > 0) {
         setTimeout(() => {
           playSound('/assets/sounds/clear-combo-4-394493.mp3', volume, soundEnabled);
-          set({ message: `${result.capturedStones} taş yakalandı!` });
+          // Kural tipine göre mesaj göster
+          let message = `${result.capturedStones} taş yakalandı!`;
+          if (result.rule === 'RULE_18_CAPTURE_EVEN') {
+            message = `Çiftleme Kuralı! ${result.capturedStones} taş yakaladınız!`;
+          } else if (result.rule === 'RULE_19_CAPTURE_OPPOSITE') {
+            message = `Tilki Kuralı! ${result.capturedStones} taş yakaladınız!`;
+          }
+          set({ message });
           setTimeout(() => set({ message: null }), 1500);
         }, bubblePopTime);
       }

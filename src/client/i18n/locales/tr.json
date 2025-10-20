@@ -86,6 +86,8 @@
     "notYourPit": "Sadece kendi bölgenizdeki kuyuları seçebilirsiniz",
     "extraTurn": "Ekstra tur kazandınız!",
     "captured": "{{count}} taş yakaladınız!",
+    "capturedDoubling": "Çiftleme Kuralı! {{count}} taş yakaladınız!",
+    "capturedFox": "Tilki Kuralı! {{count}} taş yakaladınız!",
     "setWon": "{{player}} seti kazandı!",
     "gameWon": "{{player}} oyunu kazandı!",
     "thinking": "Düşünüyor..."

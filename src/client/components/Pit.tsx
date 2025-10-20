@@ -46,18 +46,30 @@ const Pit: React.FC<PitProps> = ({ pitIndex, stones, isActive, isStartPit = fals
   };
 
   const getStoneColorClass = () => {
-    // Player 1 (alt sıra, 0-5): siyah taşlar
-    // Player 2 (üst sıra, 7-12): beyaz taşlar
+    // Player 1 (alt sıra, 1-6): beyaz taşlar
+    // Player 2 (üst sıra, 7-12): siyah taşlar
     if (pitIndex >= 0 && pitIndex <= 5) {
-      // Player 1 - Siyah taşlar
-      return 'bg-gradient-to-br from-gray-700 to-gray-900';
-    } else if (pitIndex >= 7 && pitIndex <= 12) {
-      // Player 2 - Beyaz taşlar
+      // Player 1 - Beyaz taşlar
       return 'bg-gradient-to-br from-gray-100 to-gray-300 border border-gray-400';
+    } else if (pitIndex >= 7 && pitIndex <= 12) {
+      // Player 2 - Siyah taşlar
+      return 'bg-gradient-to-br from-gray-700 to-gray-900';
     }
 
     // Fallback (hazne için, ama bu component'te hazne yok)
     return 'bg-gradient-to-br from-blue-700 to-blue-900';
+  };
+
+  // Kuyu zemin rengi
+  const getPitBackgroundColor = () => {
+    if (pitIndex >= 0 && pitIndex <= 5) {
+      // Player 1 - Siyah zemin
+      return '#1a1311';
+    } else if (pitIndex >= 7 && pitIndex <= 12) {
+      // Player 2 - Beyaz zemin
+      return '#e5e5e5';
+    }
+    return '#3e2723';
   };
 
   const stoneColorClass = getStoneColorClass();
@@ -71,7 +83,7 @@ const Pit: React.FC<PitProps> = ({ pitIndex, stones, isActive, isStartPit = fals
       {/* Kuyu Numarası - 1'den başlayarak 12'ye kadar */}
       <span className="text-xs sm:text-sm font-bold text-yellow-600 dark:text-yellow-400 mb-0.5 sm:mb-1 drop-shadow-md">{displayNumber}</span>
 
-      {/* Kuyu - Ahşap görünümlü delik */}
+      {/* Kuyu - Renkli zemin */}
       <div
         onClick={handleClick}
         className={`
@@ -86,16 +98,18 @@ const Pit: React.FC<PitProps> = ({ pitIndex, stones, isActive, isStartPit = fals
           ${isReceivingStone ? 'ring-4 ring-cyan-400 scale-110 animate-pulse' : ''}
         `}
         style={{
-          background: 'radial-gradient(circle at 30% 30%, #3e2723, #1a1311)',
+          backgroundColor: getPitBackgroundColor(),
           boxShadow: isSelected
-            ? '0 0 20px rgba(251, 191, 36, 0.8), inset 0 4px 12px rgba(0,0,0,0.8)'
+            ? '0 0 20px rgba(251, 191, 36, 0.8), inset 0 4px 12px rgba(0,0,0,0.5)'
             : isReceivingStone
-            ? '0 0 25px rgba(34, 211, 238, 0.9), inset 0 4px 12px rgba(0,0,0,0.8)'
+            ? '0 0 25px rgba(34, 211, 238, 0.9), inset 0 4px 12px rgba(0,0,0,0.5)'
             : isStartPit
-            ? '0 0 15px rgba(34, 197, 94, 0.6), inset 0 4px 12px rgba(0,0,0,0.8)'
+            ? '0 0 15px rgba(34, 197, 94, 0.6), inset 0 4px 12px rgba(0,0,0,0.5)'
             : isEndPit
-            ? '0 0 15px rgba(168, 85, 247, 0.6), inset 0 4px 12px rgba(0,0,0,0.8)'
-            : 'inset 0 4px 12px rgba(0,0,0,0.8), inset 0 -2px 4px rgba(139,69,19,0.3)'
+            ? '0 0 15px rgba(168, 85, 247, 0.6), inset 0 4px 12px rgba(0,0,0,0.5)'
+            : pitIndex >= 0 && pitIndex <= 5
+            ? 'inset 0 4px 12px rgba(0,0,0,0.8), inset 0 -2px 4px rgba(139,69,19,0.3)'
+            : 'inset 0 4px 8px rgba(0,0,0,0.3), inset 0 -2px 4px rgba(255,255,255,0.1)'
         }}
       >
         {/* Taş Sayısı */}
@@ -122,9 +136,16 @@ const Pit: React.FC<PitProps> = ({ pitIndex, stones, isActive, isStartPit = fals
                   // 7+ taş için sadece sayı göster
                   <div className="relative">
                     <div className={`w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full ${stoneColorClass} shadow-lg`} />
-                    <span className={`absolute inset-0 flex items-center justify-center font-bold text-xs sm:text-sm md:text-lg ${
-                      pitIndex >= 0 && pitIndex <= 5 ? 'text-white' : 'text-gray-800'
-                    }`}>
+                    <span
+                      className={`absolute inset-0 flex items-center justify-center font-bold text-xs sm:text-sm md:text-lg ${
+                        pitIndex >= 0 && pitIndex <= 5 ? 'text-gray-900' : 'text-white'
+                      }`}
+                      style={{
+                        textShadow: pitIndex >= 0 && pitIndex <= 5
+                          ? '0 1px 2px rgba(255,255,255,0.5)'
+                          : '0 1px 2px rgba(0,0,0,0.8)'
+                      }}
+                    >
                       {stones}
                     </span>
                   </div>

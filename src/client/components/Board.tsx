@@ -7,6 +7,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useGameStore } from '../store/gameStore';
 import Pit from './Pit';
 import Treasure from './Treasure';
+import MoveHistory from './MoveHistory';
 import { useTranslation } from 'react-i18next';
 
 const Board: React.FC = () => {
@@ -74,7 +75,9 @@ const Board: React.FC = () => {
       : 'bg-gradient-to-br from-blue-500 to-blue-700';
 
   return (
-    <div className="flex flex-col items-center justify-center gap-6 md:gap-8 p-4 md:p-8 min-h-[80vh]">
+    <div className="flex flex-row items-start justify-center gap-6 md:gap-8 p-4 md:p-8 min-h-[80vh]">
+      {/* Ana oyun alanı - Sol ve Orta */}
+      <div className="flex flex-col items-center justify-center gap-6 md:gap-8">
       {/* Settings Button - Sağ Üst */}
       <button
         onClick={() => setShowSettings(!showSettings)}
@@ -165,6 +168,13 @@ const Board: React.FC = () => {
         </div>
       </div>
 
+      {/* Player 2 İsmi - Üstte */}
+      <div className="text-center">
+        <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-red-500 drop-shadow-md">
+          {game.player2Name}
+        </h3>
+      </div>
+
       {/* Oyun Tahtası - Ortada */}
       <div
         className="rounded-3xl shadow-2xl p-6 md:p-8 relative"
@@ -250,6 +260,19 @@ const Board: React.FC = () => {
             isActive={currentPlayer === 'player1'}
           />
         </div>
+      </div>
+
+      {/* Player 1 İsmi - Altta */}
+      <div className="text-center">
+        <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-blue-500 drop-shadow-md">
+          {game.player1Name}
+        </h3>
+      </div>
+      </div>
+
+      {/* Hamle Geçmişi - Sağda */}
+      <div className="hidden lg:block">
+        <MoveHistory />
       </div>
     </div>
   );
