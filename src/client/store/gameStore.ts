@@ -259,12 +259,15 @@ export const useGameStore = create<GameStore>((set, get) => ({
     // isAnimating true yap - böylece aynı anda birden fazla bot hamlesi engellensin
     set({ isAnimating: true, message: 'Düşünüyor...' });
 
-    // Bot hamlesini hesapla - SADECE EASY (medium ve hard'da bug var)
+    // Bot hamlesini hesapla - Tüm zorluk seviyeleri aktif
+    const difficulty = game.difficulty || 'easy';
+    const thinkTime = difficulty === 'easy' ? 300 : difficulty === 'medium' ? 500 : 800;
+
     const botMove = getBotMove(
       game,
       game.currentSetIndex,
-      'easy', // Geçici olarak sadece easy - medium ve hard'da minimax hatası var
-      300
+      difficulty,
+      thinkTime
     );
 
     console.log('[BOT] Bot hamlesi hesaplandı:', botMove);
@@ -275,7 +278,9 @@ export const useGameStore = create<GameStore>((set, get) => ({
       return;
     }
 
-    // Kısa bir gecikme sonra hamle yap
+    // Normal insan hızında hamle yap (1-2 saniye arası düşünme süresi)
+    const thinkingTime = game.difficulty === 'easy' ? 800 : game.difficulty === 'medium' ? 1200 : 1500;
+
     setTimeout(() => {
       set({ message: null, isAnimating: false }); // isAnimating'i false yap ki makeMove kabul etsin
       console.log('[BOT] Hamle yapılıyor:', botMove);
@@ -285,6 +290,6 @@ export const useGameStore = create<GameStore>((set, get) => ({
       if (currentGame && currentGame.sets[currentGame.currentSetIndex].currentPlayer === 'player2') {
         get().makeMove(botMove);
       }
-    }, 800);
+    }, thinkingTime);
   }
 }));

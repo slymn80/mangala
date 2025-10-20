@@ -67,7 +67,7 @@ function getEasyMove(set: SetState, player: Player, validMoves: number[]): numbe
 }
 
 /**
- * ORTA BOT: Minimax algoritması
+ * ORTA BOT: Minimax algoritması (düşük depth - stabil)
  */
 function getMediumMove(
   gameState: any,
@@ -76,7 +76,7 @@ function getMediumMove(
   validMoves: number[],
   maxThinkTime: number
 ): number {
-  const depth = 4;
+  const depth = 2; // Daha stabil için depth düşürüldü
   let bestMove = validMoves[0];
   let bestScore = -Infinity;
 
@@ -97,7 +97,7 @@ function getMediumMove(
 }
 
 /**
- * ZOR BOT: Alpha-Beta Pruning + Gelişmiş heuristik
+ * ZOR BOT: Alpha-Beta Pruning (orta depth - stabil)
  */
 function getHardMove(
   gameState: any,
@@ -106,7 +106,7 @@ function getHardMove(
   validMoves: number[],
   maxThinkTime: number
 ): number {
-  const depth = 6;
+  const depth = 3; // Daha stabil için depth düşürüldü
   let bestMove = validMoves[0];
   let bestScore = -Infinity;
 
