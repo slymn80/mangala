@@ -191,8 +191,9 @@ const Menu: React.FC<MenuProps> = ({ onStartGame }) => {
               className="btn btn-secondary w-full appearance-none"
             >
               <option value="tr">🇹🇷 TR</option>
-              <option value="en">🇬🇧 EN</option>
               <option value="kk">🇰🇿 KK</option>
+              <option value="en">🇬🇧 EN</option>
+              <option value="ru">🇷🇺 RU</option>
             </select>
           </div>
         </div>
