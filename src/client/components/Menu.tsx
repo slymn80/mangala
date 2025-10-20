@@ -48,20 +48,20 @@ const Menu: React.FC<MenuProps> = ({ onStartGame }) => {
   return (
     <div className="min-h-screen flex flex-col p-2 sm:p-4">
       {/* Logo ve Okul Adı - Sol Üst Köşe */}
-      <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 md:mb-8 fade-in">
+      <div className="flex items-center gap-2 mb-3 sm:mb-4 md:mb-6 fade-in">
         <img
           src="/assets/images/okul_logo.jpg"
           alt="Okul Logo"
-          className="h-12 w-12 sm:h-14 sm:w-14 md:h-16 md:w-16 object-contain rounded-lg shadow-md"
+          className="h-10 w-10 sm:h-12 sm:w-12 md:h-16 md:w-16 object-contain rounded-lg shadow-md flex-shrink-0"
         />
-        <div className="flex flex-col">
-          <h2 className="text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400">
+        <div className="flex flex-col min-w-0">
+          <h2 className="text-[10px] sm:text-xs md:text-sm font-semibold text-blue-600 dark:text-blue-400 truncate">
             Özel Talgar 1 Nolu Yatılı Lisesi
           </h2>
-          <h1 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+          <h1 className="text-base sm:text-lg md:text-2xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
             MANGALA
           </h1>
-          <p className="text-xs sm:text-sm text-red-500 font-medium">by Süleyman Tongut</p>
+          <p className="text-[9px] sm:text-xs text-red-500 font-medium">by Süleyman Tongut</p>
         </div>
       </div>
 

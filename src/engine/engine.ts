@@ -356,8 +356,9 @@ export function updateGameScore(gameState: GameState, setWinner: Player | 'draw'
     newState.sets.push(createNewSet(nextStarter));
     newState.currentSetIndex = totalSets;
   } else {
-    // Oyun bitti
+    // Oyun bitti - currentSetIndex'i son geçerli set'te tut
     newState.status = 'finished';
+    newState.currentSetIndex = totalSets - 1; // Son set'in index'i (4)
     if (newState.scores.player1 > newState.scores.player2) {
       newState.winner = 'player1';
     } else if (newState.scores.player2 > newState.scores.player1) {

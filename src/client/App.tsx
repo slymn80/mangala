@@ -92,23 +92,23 @@ const App: React.FC = () => {
         }`}>
           <div className="max-w-7xl mx-auto flex items-center justify-between">
             {/* Sol: Logo ve Okul Adı */}
-            <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
+            <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
               <img
                 src="/assets/images/okul_logo.jpg"
                 alt="Okul Logo"
-                className="h-10 w-10 sm:h-12 sm:w-12 md:h-16 md:w-16 object-contain rounded-lg shadow-md"
+                className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 object-contain rounded-lg shadow-md flex-shrink-0"
               />
-              <div className="flex flex-col">
-                <h2 className="text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400 hidden sm:block">
+              <div className="flex flex-col min-w-0">
+                <h2 className="text-[9px] sm:text-xs font-semibold text-blue-600 dark:text-blue-400 hidden md:block truncate">
                   Özel Talgar 1 Nolu Yatılı Lisesi
                 </h2>
-                <h1 className="text-sm sm:text-base md:text-xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+                <h1 className="text-xs sm:text-sm md:text-base font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
                   MANGALA
                 </h1>
-                <p className="text-[10px] sm:text-xs text-red-500 font-medium">by Süleyman Tongut</p>
+                <p className="text-[8px] sm:text-[9px] md:text-xs text-red-500 font-medium">by Süleyman Tongut</p>
               </div>
-              <div className="text-xs sm:text-sm text-gray-400 ml-1 sm:ml-2">
-                {t('score.set')} {game.currentSetIndex + 1} / 5
+              <div className="text-[10px] sm:text-xs text-gray-400 whitespace-nowrap">
+                {t('score.set')} {game.currentSetIndex + 1}/5
               </div>
             </div>
 
