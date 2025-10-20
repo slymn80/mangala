@@ -19,15 +19,12 @@ const Treasure: React.FC<TreasureProps> = ({ stones, player, isActive }) => {
   const stoneColor = useGameStore((state) => state.stoneColor);
 
   const getStoneColorClass = () => {
-    switch (stoneColor) {
-      case 'red':
-        return 'from-red-500 to-red-700';
-      case 'white':
-        return 'from-gray-100 to-gray-300';
-      case 'blue':
-        return 'from-blue-700 to-blue-900';
-      default:
-        return 'from-red-500 to-red-700';
+    // Player 1 (sağ hazne): beyaz taşlar
+    // Player 2 (sol hazne): siyah taşlar
+    if (player === 'player1') {
+      return 'from-gray-100 to-gray-300';
+    } else {
+      return 'from-gray-700 to-gray-900';
     }
   };
 
@@ -82,7 +79,9 @@ const Treasure: React.FC<TreasureProps> = ({ stones, player, isActive }) => {
               ${playerColor === 'blue' ? 'border-blue-400' : 'border-red-400'}
             `}
           >
-            <span className="text-sm sm:text-lg md:text-2xl font-bold text-white drop-shadow-lg">
+            <span className={`text-sm sm:text-lg md:text-2xl font-bold drop-shadow-lg ${
+              player === 'player1' ? 'text-gray-800' : 'text-white'
+            }`}>
               {stones}
             </span>
           </div>

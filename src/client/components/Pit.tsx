@@ -44,16 +44,18 @@ const Pit: React.FC<PitProps> = ({ pitIndex, stones, isActive, isStartPit = fals
   };
 
   const getStoneColorClass = () => {
-    switch (stoneColor) {
-      case 'red':
-        return 'bg-gradient-to-br from-red-500 to-red-700';
-      case 'white':
-        return 'bg-gradient-to-br from-gray-100 to-gray-300 border border-gray-400';
-      case 'blue':
-        return 'bg-gradient-to-br from-blue-700 to-blue-900';
-      default:
-        return 'bg-gradient-to-br from-red-500 to-red-700';
+    // Player 1 (alt sıra, 0-5): beyaz taşlar
+    // Player 2 (üst sıra, 7-12): siyah taşlar
+    if (pitIndex >= 0 && pitIndex <= 5) {
+      // Player 1 - Beyaz taşlar
+      return 'bg-gradient-to-br from-gray-100 to-gray-300 border border-gray-400';
+    } else if (pitIndex >= 7 && pitIndex <= 12) {
+      // Player 2 - Siyah taşlar
+      return 'bg-gradient-to-br from-gray-700 to-gray-900';
     }
+
+    // Fallback (hazne için, ama bu component'te hazne yok)
+    return 'bg-gradient-to-br from-blue-700 to-blue-900';
   };
 
   const stoneColorClass = getStoneColorClass();
@@ -112,7 +114,9 @@ const Pit: React.FC<PitProps> = ({ pitIndex, stones, isActive, isStartPit = fals
                   // 7+ taş için sadece sayı göster
                   <div className="relative">
                     <div className={`w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full ${stoneColorClass} shadow-lg`} />
-                    <span className="absolute inset-0 flex items-center justify-center text-white font-bold text-xs sm:text-sm md:text-lg">
+                    <span className={`absolute inset-0 flex items-center justify-center font-bold text-xs sm:text-sm md:text-lg ${
+                      pitIndex >= 0 && pitIndex <= 5 ? 'text-gray-800' : 'text-white'
+                    }`}>
                       {stones}
                     </span>
                   </div>
