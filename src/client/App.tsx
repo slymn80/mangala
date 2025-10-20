@@ -14,6 +14,7 @@ const App: React.FC = () => {
   const { t } = useTranslation();
   const game = useGameStore((state) => state.game);
   const theme = useGameStore((state) => state.theme);
+  const clearGame = useGameStore((state) => state.clearGame);
   const [showMenu, setShowMenu] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
 
@@ -41,6 +42,7 @@ const App: React.FC = () => {
   };
 
   const handleQuitToMenu = () => {
+    clearGame(); // Oyunu temizle - localStorage'dan da silinir
     setShowMenu(true);
     setIsPaused(false);
   };

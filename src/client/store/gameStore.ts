@@ -39,6 +39,7 @@ interface GameStore {
 
   // Actions
   startNewGame: (params: any) => void;
+  clearGame: () => void;
   makeMove: (pitIndex: number) => void;
   selectPit: (pitIndex: number | null) => void;
   setMessage: (message: string | null) => void;
@@ -83,6 +84,18 @@ export const useGameStore = create<GameStore>()(
     const game = initializeGame(params);
     set({ game, selectedPit: null, message: null, isAnimating: false, isBotThinking: false, lastMove: null, animatedPit: null });
     // Bot sırası kontrolü artık Board.tsx useEffect'inde yapılıyor
+  },
+
+  clearGame: () => {
+    set({
+      game: null,
+      selectedPit: null,
+      message: null,
+      isAnimating: false,
+      isBotThinking: false,
+      lastMove: null,
+      animatedPit: null
+    });
   },
 
   makeMove: (pitIndex) => {

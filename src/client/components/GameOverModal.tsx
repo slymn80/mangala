@@ -11,6 +11,7 @@ const GameOverModal: React.FC = () => {
   const { t } = useTranslation();
   const game = useGameStore((state) => state.game);
   const startNewGame = useGameStore((state) => state.startNewGame);
+  const clearGame = useGameStore((state) => state.clearGame);
 
   if (!game || game.status !== 'finished') return null;
 
@@ -113,7 +114,10 @@ const GameOverModal: React.FC = () => {
               🔄 {t('menu.newGame')}
             </button>
             <button
-              onClick={() => window.location.reload()}
+              onClick={() => {
+                clearGame();
+                window.location.reload();
+              }}
               className="btn btn-secondary flex-1 text-lg py-4"
             >
               🏠 {t('menu.quit')}
