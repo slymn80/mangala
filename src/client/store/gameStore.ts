@@ -3,6 +3,7 @@
  */
 
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 import type { GameState, SetState } from '../../types/game.types';
 import { initializeGame, applyMove, updateGameScore } from '../../engine/engine';
 import { getBotMove } from '../../engine/bot';
@@ -56,7 +57,9 @@ interface GameStore {
   makeBotMove: () => void;
 }
 
-export const useGameStore = create<GameStore>((set, get) => ({
+export const useGameStore = create<GameStore>()(
+  persist(
+    (set, get) => ({
   // Initial State
   game: null,
   selectedPit: null,
@@ -329,4 +332,19 @@ export const useGameStore = create<GameStore>((set, get) => ({
       }
     }, thinkingTime);
   }
-}));
+}),
+    {
+      name: 'mangala-game-storage',
+      partialize: (state) => ({
+        game: state.game,
+        soundEnabled: state.soundEnabled,
+        musicEnabled: state.musicEnabled,
+        volume: state.volume,
+        animationsEnabled: state.animationsEnabled,
+        theme: state.theme,
+        boardStyle: state.boardStyle,
+        stoneColor: state.stoneColor
+      })
+    }
+  )
+);

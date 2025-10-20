@@ -89,5 +89,12 @@
     "setWon": "{{player}} seti kazandı!",
     "gameWon": "{{player}} oyunu kazandı!",
     "thinking": "Düşünüyor..."
+  },
+  "moveHistory": {
+    "title": "Hamle Geçmişi",
+    "empty": "Henüz hamle yapılmadı",
+    "pit": "Kuyu",
+    "extraTurn": "Ekstra Tur",
+    "totalMoves": "Toplam Hamle"
   }
 }

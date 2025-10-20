@@ -37,28 +37,24 @@ const Treasure: React.FC<TreasureProps> = ({ stones, player, isActive }) => {
 
   return (
     <div className="flex flex-col items-center gap-1 sm:gap-2">
-      {/* Hazne */}
+      {/* Hazne - Şeffaf, sadece taşları gösteriyor */}
       <div
         className={`
           w-12 h-28 sm:w-20 sm:h-40 md:w-24 md:h-48 rounded-2xl sm:rounded-3xl
           flex flex-col items-center justify-center
           relative
           transition-all duration-200
-          ${isActive ? 'shadow-xl ring-1 sm:ring-2 ring-yellow-400' : 'shadow-lg'}
+          ${isActive ? 'ring-1 sm:ring-2 ring-yellow-400' : ''}
           ${isReceivingStone ? 'ring-4 ring-cyan-400 scale-110 animate-pulse' : ''}
         `}
         style={{
-          background: `linear-gradient(180deg, #cd853f 0%, #8b4513 100%)`,
           boxShadow: isActive
-            ? '0 8px 16px rgba(0, 0, 0, 0.3), inset 0 -8px 16px rgba(0, 0, 0, 0.4), 0 0 20px rgba(251, 191, 36, 0.5)'
+            ? '0 0 20px rgba(251, 191, 36, 0.5)'
             : isReceivingStone
-            ? '0 8px 16px rgba(0, 0, 0, 0.3), inset 0 -8px 16px rgba(0, 0, 0, 0.4), 0 0 30px rgba(34, 211, 238, 0.9)'
-            : 'inset 0 -8px 16px rgba(0, 0, 0, 0.4), 0 4px 8px rgba(0, 0, 0, 0.2)'
+            ? '0 0 30px rgba(34, 211, 238, 0.9)'
+            : 'none'
         }}
       >
-        {/* Dekoratif çizgiler */}
-        <div className="absolute top-2 sm:top-3 md:top-4 left-1/2 transform -translate-x-1/2 w-10 sm:w-12 md:w-16 h-0.5 sm:h-1 bg-yellow-600 rounded-full opacity-40"></div>
-        <div className="absolute bottom-2 sm:bottom-3 md:bottom-4 left-1/2 transform -translate-x-1/2 w-10 sm:w-12 md:w-16 h-0.5 sm:h-1 bg-yellow-600 rounded-full opacity-40"></div>
 
         {/* Taş gösterimi */}
         <div className="relative flex flex-col items-center justify-center h-full">

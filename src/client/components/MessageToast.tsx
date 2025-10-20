@@ -25,7 +25,7 @@ const MessageToast: React.FC = () => {
       <div className="glass px-6 py-4 rounded-2xl shadow-2xl border-2 border-yellow-400">
         <div className="flex items-center gap-3">
           <span className="text-2xl">💬</span>
-          <p className="text-lg font-semibold text-white">{message}</p>
+          <p className="text-lg font-semibold text-gray-900 dark:text-white drop-shadow-lg">{message}</p>
         </div>
       </div>
     </div>

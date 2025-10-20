@@ -62,12 +62,16 @@ const Pit: React.FC<PitProps> = ({ pitIndex, stones, isActive, isStartPit = fals
 
   const stoneColorClass = getStoneColorClass();
 
+  // Kullanıcı dostu kuyu numarası: 1-12
+  // Player 1 (0-5) → 1-6, Player 2 (7-12) → 7-12
+  const displayNumber = pitIndex >= 0 && pitIndex <= 5 ? pitIndex + 1 : pitIndex;
+
   return (
     <div className="relative flex flex-col items-center">
-      {/* Kuyu İndeksi (Debug - isteğe bağlı) */}
-      <span className="text-[10px] sm:text-xs text-gray-500 mb-0.5 sm:mb-1">{pitIndex}</span>
+      {/* Kuyu Numarası - 1'den başlayarak 12'ye kadar */}
+      <span className="text-xs sm:text-sm font-bold text-yellow-600 dark:text-yellow-400 mb-0.5 sm:mb-1 drop-shadow-md">{displayNumber}</span>
 
-      {/* Kuyu */}
+      {/* Kuyu - Artık sadece taşların konteyneri, arka plan yok */}
       <div
         onClick={handleClick}
         className={`
@@ -75,24 +79,22 @@ const Pit: React.FC<PitProps> = ({ pitIndex, stones, isActive, isStartPit = fals
           flex items-center justify-center
           relative cursor-pointer
           transition-all duration-200
-          ${canClick ? 'hover:scale-110 hover:shadow-lg' : 'opacity-60 cursor-not-allowed'}
+          ${canClick ? 'hover:scale-110' : 'opacity-80 cursor-not-allowed'}
           ${isSelected ? 'ring-2 sm:ring-4 ring-yellow-400 shadow-glow scale-110' : ''}
           ${isStartPit ? 'ring-2 sm:ring-3 ring-green-500' : ''}
           ${isEndPit ? 'ring-2 sm:ring-3 ring-purple-500' : ''}
           ${isReceivingStone ? 'ring-4 ring-cyan-400 scale-125 animate-pulse' : ''}
-          ${isActive && stones > 0 ? 'shadow-md' : ''}
         `}
         style={{
-          background: 'radial-gradient(circle at 30% 30%, #d2691e, #8b4513)',
           boxShadow: isSelected
-            ? '0 0 20px rgba(251, 191, 36, 0.8), inset 0 -4px 8px rgba(0, 0, 0, 0.4)'
+            ? '0 0 20px rgba(251, 191, 36, 0.8)'
             : isReceivingStone
-            ? '0 0 25px rgba(34, 211, 238, 0.9), inset 0 -4px 8px rgba(0, 0, 0, 0.4)'
+            ? '0 0 25px rgba(34, 211, 238, 0.9)'
             : isStartPit
-            ? '0 0 15px rgba(34, 197, 94, 0.6), inset 0 -4px 8px rgba(0, 0, 0, 0.4)'
+            ? '0 0 15px rgba(34, 197, 94, 0.6)'
             : isEndPit
-            ? '0 0 15px rgba(168, 85, 247, 0.6), inset 0 -4px 8px rgba(0, 0, 0, 0.4)'
-            : 'inset 0 -4px 8px rgba(0, 0, 0, 0.4)'
+            ? '0 0 15px rgba(168, 85, 247, 0.6)'
+            : 'none'
         }}
       >
         {/* Taş Sayısı */}
@@ -130,9 +132,7 @@ const Pit: React.FC<PitProps> = ({ pitIndex, stones, isActive, isStartPit = fals
             </div>
           )}
 
-          {stones === 0 && (
-            <span className="text-gray-600 text-2xl opacity-20">○</span>
-          )}
+          {/* Boş kuyu - hiçbir şey gösterme, tahta resmi kendi kuyularını gösteriyor */}
         </div>
       </div>
 

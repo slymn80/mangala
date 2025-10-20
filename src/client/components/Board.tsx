@@ -159,14 +159,15 @@ const Board: React.FC = () => {
         </div>
       </div>
 
-      {/* Oyun Tahtası */}
+      {/* Oyun Tahtası - %25 büyütüldü */}
       <div
-        className="rounded-2xl md:rounded-3xl shadow-2xl p-2 sm:p-4 md:p-8 landscape:p-4 relative w-full max-w-4xl landscape:max-w-2xl landscape:order-2"
+        className="rounded-2xl md:rounded-3xl shadow-2xl p-2 sm:p-4 md:p-8 landscape:p-4 relative w-full max-w-5xl landscape:max-w-3xl landscape:order-2"
         style={{
           backgroundImage: 'linear-gradient(to bottom right, rgba(139, 69, 19, 0.7), rgba(101, 67, 33, 0.7)), url(/assets/images/mangala_tahtasi_logolu.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          backgroundBlendMode: 'multiply'
+          backgroundBlendMode: 'multiply',
+          transform: 'scale(1.25)'
         }}
       >
         {/* İç Çerçeve */}
