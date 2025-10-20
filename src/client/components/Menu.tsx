@@ -61,6 +61,7 @@ const Menu: React.FC<MenuProps> = ({ onStartGame }) => {
           <h1 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
             MANGALA
           </h1>
+          <p className="text-xs sm:text-sm text-red-500 font-medium">by Süleyman Tongut</p>
         </div>
       </div>
 

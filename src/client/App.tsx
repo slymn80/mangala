@@ -105,6 +105,7 @@ const App: React.FC = () => {
                 <h1 className="text-sm sm:text-base md:text-xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
                   MANGALA
                 </h1>
+                <p className="text-[10px] sm:text-xs text-red-500 font-medium">by Süleyman Tongut</p>
               </div>
               <div className="text-xs sm:text-sm text-gray-400 ml-1 sm:ml-2">
                 {t('score.set')} {game.currentSetIndex + 1} / 5
@@ -117,7 +118,7 @@ const App: React.FC = () => {
                 onClick={handleRefresh}
                 className="btn btn-success px-2 sm:px-3 md:px-4 py-1 sm:py-2 text-xs sm:text-sm"
               >
-                <span className="hidden sm:inline">🔄 {t('menu.refresh')}</span>
+                <span className="hidden sm:inline">🔄 {t('menu.newGame')}</span>
                 <span className="sm:hidden">🔄</span>
               </button>
               <button
