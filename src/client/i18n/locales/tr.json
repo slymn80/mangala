@@ -59,27 +59,63 @@
   },
   "rules": {
     "title": "Oyun Kuralları",
-    "rule1": "1. Mangala iki kişi ile oynanır",
-    "rule2": "2. 12 küçük kuyu + 2 büyük hazne",
-    "rule3": "3. Sağdaki hazne kendi haznenizdir",
-    "rule4": "4. 48 taş ile oynanır (24+24)",
-    "rule5": "5-6. Her kuyuda başlangıçta 4 taş",
-    "rule7": "7. Önünüzdeki 6 kuyu sizin bölgeniz",
-    "rule8": "8. Haznede en çok taş toplayan kazanır",
-    "rule9": "9. Oyun sonunda en çok taş toplayan seti kazanır",
-    "rule10": "10. Kura ile başlanır",
-    "rule11": "11. İstediğiniz kuyudan taşları alın",
-    "rule12": "12. Saat tersi yönde (sağa) dağıtın",
-    "rule13": "13. Son taş haznede → ekstra tur",
-    "rule14": "14. Tek taş varsa aldığı kuyuya bırakmadan oynanabilir",
-    "rule15": "15. Son taş hazne değilse → sıra rakibe geçer",
-    "rule16": "16-17. Rakip bölgesine de dağıtabilirsiniz",
-    "rule18": "18. Rakip bölgesinde çift yaparsanız → taşları alın",
-    "rule19": "19. Kendi boş kuyuya son taş + karşı dolu → ikisini de alın",
-    "rule20": "20. Bir taraf boşalınca set biter",
-    "rule21": "21. Tahtadaki kalan taşlar kazanana",
-    "rule22": "22. 5 set oynanır",
-    "rule23": "23. Kazanan 1, berabere 0.5 puan alır"
+    "rule1": "1. Mangala Türk Zeka ve Strateji Oyunu iki kişi ile oynanır.",
+    "rule2": "2. Oyun tahtası üzerinde karşılıklı 6'şar adet olmak üzere 12 küçük kuyu ve her oyuncunun taşlarını toplayacağı sağlı sollu birer büyük hazne bulunmaktadır.",
+    "rule3": "3. Oyuncunun sağındaki hazne kendi haznesidir.",
+    "rule4": "4. Mangala Oyunu 48 taş ile oynanır.",
+    "rule5": "5. Her oyuncunun 24 taşı vardır.",
+    "rule6": "6. Oyuncular kendilerine ait 24 taşı her bir kuyuya 4'er adet olmak üzere dağıtırlar.",
+    "rule7": "7. Oyunda her oyuncunun önünde bulunan yan yana 6 küçük kuyu, o oyuncunun bölgesidir. Karşısında bulunan 6 küçük kuyu rakibinin bölgesidir.",
+    "rule8": "8. Oyuncular hazinelerinde en fazla taşı biriktirmeye çalışırlar.",
+    "rule9": "9. Oyun sonunda en çok taşı toplayan oyuncu oyun setini kazanmış olur.",
+    "rule10": "10. Oyuna kura ile başlanır.",
+    "rule11": "11. Kura neticesinde başlama hakkı kazanan oyuncu kendi bölgesinde bulunan istediği kuyudan 4 adet taşı alır.",
+    "rule12": "12. Bir adet taşı aldığı kuyuya bırakıp saatin tersi yönünde, yani sağa doğru her bir kuyuya birer adet taş bırakarak elindeki taşlar bitene kadar dağıtır.",
+    "rule13": "13. Elindeki son taş haznesine denk gelirse, oyuncu tekrar oynama hakkına sahip olur.",
+    "rule14": "14. Yine üstte belirtilen kurallara göre bir kez daha oynar. Eğer oynadığı kuyuda tek taş varsa bu taşı sağındaki kuyuya taşıyabilir. Yani aldığı kuyuya bırakma kuralı kuyuda tek taş varsa geçerli değildir.",
+    "rule15": "15. Eldeki son taş hazneye denk gelmezse, sıra rakibe geçer.",
+    "rule16": "16. Rakip için de aynı kurallar geçerlidir.",
+    "rule17": "17. Hamle sırası gelen oyuncu kendi kuyusundan aldığı taşları dağıtırken haznesine de taş koyduktan sonra hâlâ elinde taş kaldıysa, rakibinin bölgesindeki kuyulara da taş bırakmaya devam eder. Ve hamle sırası rakibe geçer.",
+    "rule18": "18. Oyuncunun elindeki son taş, rakibinin bölgesinde denk geldiği kuyudaki taşların sayısını çift sayı yaparsa (2, 4, 6, 8 gibi) oyuncu bu kuyuda yer alan tüm taşların sahibi olur ve onları kendi haznesine koyar. Hamle sırası rakibine geçer.",
+    "rule19": "19. Oyuncu taşları dağıtırken elinde kalan son taş, yine kendi bölgesinde yer alan boş bir kuyuya denk gelirse ve eğer boş kuyusunun karşısındaki kuyuda da rakibine ait taş varsa, hem rakibinin kuyusundaki taşları alır, hem de kendi boş kuyusuna bıraktığı taşı alıp kendi haznesine koyar. Hamle sırası rakibine geçer.",
+    "rule20": "20. Oyunculardan herhangi birinin bölgesinde yer alan taşlar bittiğinde oyun seti biter.",
+    "rule21": "21. Oyunda kendi bölgesinde taşları ilk biten oyuncu, rakibinin bölgesinde bulunan tüm taşları da kazanmış olur ve kendi haznesine koyar.",
+    "rule22": "22. Mangala Oyunu 5 set olarak oynanır.",
+    "rule23": "23. Oyunu kazanan oyuncu (1) puan, kaybeden (0) puan ve berabere bitiren oyuncular yarım (0,5) puan alır."
+  },
+  "botInfo": {
+    "title": "Bot Algoritmaları",
+    "beginner": {
+      "name": "Acemi (Beginner)",
+      "algorithm": "Algoritma: Rastgele Seçim",
+      "depth": "Derinlik: 0 (Strateji yok)",
+      "description": "Tamamen rastgele hamleler yapar. Oyunu öğrenenler için ideal."
+    },
+    "easy": {
+      "name": "Kolay (Easy)",
+      "algorithm": "Algoritma: Basit Heuristik",
+      "depth": "Derinlik: 1 (Bir hamle ilerisi)",
+      "description": "Hazneye ulaşmayı önceliklendirir. Basit ama tutarlı hamleler yapar."
+    },
+    "medium": {
+      "name": "Orta (Medium)",
+      "algorithm": "Algoritma: Minimax",
+      "depth": "Derinlik: 3 (Üç hamle ilerisi)",
+      "description": "Rakibin olası hamlelerini düşünür. Dengeli strateji ile oynar."
+    },
+    "hard": {
+      "name": "Zor (Hard)",
+      "algorithm": "Algoritma: Alpha-Beta Pruning",
+      "depth": "Derinlik: 5 (Beş hamle ilerisi)",
+      "description": "Akıllı budama ile hızlı ve etkili. İyi oyuncular için zorluk."
+    },
+    "master": {
+      "name": "Usta (Master)",
+      "algorithm": "Algoritma: Alpha-Beta + Gelişmiş Heuristik",
+      "depth": "Derinlik: 7 (Yedi hamle ilerisi)",
+      "description": "En gelişmiş algoritma. Stratejik pozisyonları değerlendirir, yakalama fırsatlarını hesaplar."
+    },
+    "note": "💡 Not: Tüm botlar aynı hızda düşünür, fark sadece algoritma derinliğindedir."
   },
   "messages": {
     "invalidMove": "Geçersiz hamle!",

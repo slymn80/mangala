@@ -59,27 +59,63 @@
   },
   "rules": {
     "title": "Game Rules",
-    "rule1": "1. Mangala is played by two players",
-    "rule2": "2. 12 small pits + 2 large treasures",
-    "rule3": "3. Right treasure is yours",
-    "rule4": "4. Played with 48 stones (24+24)",
-    "rule5": "5-6. Each pit starts with 4 stones",
-    "rule7": "7. 6 pits in front of you are your zone",
-    "rule8": "8. Player with most stones in treasure wins",
-    "rule9": "9. Player with most stones wins the set",
-    "rule10": "10. Game starts with a draw",
-    "rule11": "11. Pick stones from your pit",
-    "rule12": "12. Distribute counter-clockwise (right)",
-    "rule13": "13. Last stone in treasure → extra turn",
-    "rule14": "14. Single stone can skip starting pit",
-    "rule15": "15. Last stone not in treasure → turn passes",
-    "rule16": "16-17. Can distribute to opponent's zone",
-    "rule18": "18. Make even in opponent zone → capture",
-    "rule19": "19. Last stone in your empty pit + opposite full → capture both",
-    "rule20": "20. Set ends when one side is empty",
-    "rule21": "21. Remaining stones go to winner",
-    "rule22": "22. Play 5 sets",
-    "rule23": "23. Winner gets 1 point, draw 0.5 points"
+    "rule1": "1. Mangala Turkish Strategy Board Game is played by two players.",
+    "rule2": "2. The game board has 12 small pits (6 on each side) and two large treasures (stores) for each player to collect stones.",
+    "rule3": "3. The treasure on the player's right side is their own.",
+    "rule4": "4. Mangala is played with 48 stones.",
+    "rule5": "5. Each player has 24 stones.",
+    "rule6": "6. Players distribute their 24 stones, placing 4 in each pit.",
+    "rule7": "7. The 6 small pits in front of each player are their zone. The 6 pits opposite belong to the opponent.",
+    "rule8": "8. Players try to accumulate the most stones in their treasures.",
+    "rule9": "9. The player with the most stones at the end wins the set.",
+    "rule10": "10. The game starts with a draw/coin toss.",
+    "rule11": "11. The player who wins the draw picks up 4 stones from any pit in their zone.",
+    "rule12": "12. They place one stone in the pit they picked from, then continue counter-clockwise (to the right), placing one stone in each pit until their hand is empty.",
+    "rule13": "13. If the last stone lands in their treasure, the player gets another turn.",
+    "rule14": "14. Following the same rules, they play again. If a pit has only one stone, it can be moved to the next pit. The rule of placing in the starting pit doesn't apply when there's only one stone.",
+    "rule15": "15. If the last stone doesn't land in the treasure, the turn passes to the opponent.",
+    "rule16": "16. The same rules apply to the opponent.",
+    "rule17": "17. When distributing stones, if a player still has stones after placing one in their treasure, they continue placing stones in the opponent's pits. Then the turn passes.",
+    "rule18": "18. If the last stone makes an even number (2, 4, 6, 8, etc.) in the opponent's pit, the player captures all stones in that pit and places them in their treasure. The turn passes.",
+    "rule19": "19. If the last stone lands in an empty pit in the player's own zone, and the opposite pit has opponent's stones, the player captures both the opposite stones and their own stone, placing them all in their treasure. The turn passes.",
+    "rule20": "20. The set ends when one player's zone is empty.",
+    "rule21": "21. The player whose zone emptied first also wins all remaining stones in the opponent's zone and places them in their treasure.",
+    "rule22": "22. Mangala is played in 5 sets.",
+    "rule23": "23. The winning player gets (1) point, the loser gets (0) points, and players in a draw each get half (0.5) points."
+  },
+  "botInfo": {
+    "title": "Bot Algorithms",
+    "beginner": {
+      "name": "Beginner",
+      "algorithm": "Algorithm: Random Selection",
+      "depth": "Depth: 0 (No strategy)",
+      "description": "Makes completely random moves. Ideal for learning the game."
+    },
+    "easy": {
+      "name": "Easy",
+      "algorithm": "Algorithm: Simple Heuristic",
+      "depth": "Depth: 1 (One move ahead)",
+      "description": "Prioritizes reaching the treasure. Makes simple but consistent moves."
+    },
+    "medium": {
+      "name": "Medium",
+      "algorithm": "Algorithm: Minimax",
+      "depth": "Depth: 3 (Three moves ahead)",
+      "description": "Considers opponent's possible moves. Plays with balanced strategy."
+    },
+    "hard": {
+      "name": "Hard",
+      "algorithm": "Algorithm: Alpha-Beta Pruning",
+      "depth": "Depth: 5 (Five moves ahead)",
+      "description": "Fast and effective with smart pruning. Challenging for good players."
+    },
+    "master": {
+      "name": "Master",
+      "algorithm": "Algorithm: Alpha-Beta + Advanced Heuristic",
+      "depth": "Depth: 7 (Seven moves ahead)",
+      "description": "Most advanced algorithm. Evaluates strategic positions and calculates capture opportunities."
+    },
+    "note": "💡 Note: All bots think at the same speed, the difference is only in algorithm depth."
   },
   "messages": {
     "invalidMove": "Invalid move!",

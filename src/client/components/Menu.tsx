@@ -165,7 +165,7 @@ const Menu: React.FC<MenuProps> = ({ onStartGame }) => {
             <div className="space-y-4">
               <h3 className="text-2xl font-bold mb-4 dark:text-white text-gray-900">{t('rules.title')}</h3>
               <div className="max-h-96 overflow-y-auto space-y-2 text-sm">
-                {Array.from({ length: 23 }, (_, i) => i + 1).map((num) => (
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23].map((num) => (
                   <p key={num} className="dark:text-gray-300 text-gray-800">
                     {t(`rules.rule${num}`)}
                   </p>
@@ -181,46 +181,46 @@ const Menu: React.FC<MenuProps> = ({ onStartGame }) => {
             </div>
           ) : showBotInfo ? (
             <div className="space-y-4">
-              <h3 className="text-2xl font-bold mb-4 dark:text-white text-gray-900">🤖 Bot Algoritmaları</h3>
+              <h3 className="text-2xl font-bold mb-4 dark:text-white text-gray-900">🤖 {t('botInfo.title')}</h3>
               <div className="max-h-96 overflow-y-auto space-y-4 text-sm">
                 <div className="p-3 rounded-lg bg-gray-100 dark:bg-gray-800">
-                  <h4 className="font-bold text-lg mb-2 text-green-600 dark:text-green-400">🌱 Acemi (Beginner)</h4>
-                  <p className="dark:text-gray-300 text-gray-700 mb-1"><strong>Algoritma:</strong> Rastgele Seçim</p>
-                  <p className="dark:text-gray-300 text-gray-700 mb-1"><strong>Derinlik:</strong> 0 (Strateji yok)</p>
-                  <p className="dark:text-gray-300 text-gray-700">Tamamen rastgele hamleler yapar. Oyunu öğrenenler için ideal.</p>
+                  <h4 className="font-bold text-lg mb-2 text-green-600 dark:text-green-400">🌱 {t('botInfo.beginner.name')}</h4>
+                  <p className="dark:text-gray-300 text-gray-700 mb-1"><strong>{t('botInfo.beginner.algorithm')}</strong></p>
+                  <p className="dark:text-gray-300 text-gray-700 mb-1"><strong>{t('botInfo.beginner.depth')}</strong></p>
+                  <p className="dark:text-gray-300 text-gray-700">{t('botInfo.beginner.description')}</p>
                 </div>
 
                 <div className="p-3 rounded-lg bg-gray-100 dark:bg-gray-800">
-                  <h4 className="font-bold text-lg mb-2 text-blue-600 dark:text-blue-400">⭐ Kolay (Easy)</h4>
-                  <p className="dark:text-gray-300 text-gray-700 mb-1"><strong>Algoritma:</strong> Basit Heuristik</p>
-                  <p className="dark:text-gray-300 text-gray-700 mb-1"><strong>Derinlik:</strong> 1 (Bir hamle ilerisi)</p>
-                  <p className="dark:text-gray-300 text-gray-700">Hazneye ulaşmayı önceliklendirir. Basit ama tutarlı hamleler yapar.</p>
+                  <h4 className="font-bold text-lg mb-2 text-blue-600 dark:text-blue-400">⭐ {t('botInfo.easy.name')}</h4>
+                  <p className="dark:text-gray-300 text-gray-700 mb-1"><strong>{t('botInfo.easy.algorithm')}</strong></p>
+                  <p className="dark:text-gray-300 text-gray-700 mb-1"><strong>{t('botInfo.easy.depth')}</strong></p>
+                  <p className="dark:text-gray-300 text-gray-700">{t('botInfo.easy.description')}</p>
                 </div>
 
                 <div className="p-3 rounded-lg bg-gray-100 dark:bg-gray-800">
-                  <h4 className="font-bold text-lg mb-2 text-yellow-600 dark:text-yellow-400">⚡ Orta (Medium)</h4>
-                  <p className="dark:text-gray-300 text-gray-700 mb-1"><strong>Algoritma:</strong> Minimax</p>
-                  <p className="dark:text-gray-300 text-gray-700 mb-1"><strong>Derinlik:</strong> 3 (Üç hamle ilerisi)</p>
-                  <p className="dark:text-gray-300 text-gray-700">Rakibin olası hamlelerini düşünür. Dengeli strateji ile oynar.</p>
+                  <h4 className="font-bold text-lg mb-2 text-yellow-600 dark:text-yellow-400">⚡ {t('botInfo.medium.name')}</h4>
+                  <p className="dark:text-gray-300 text-gray-700 mb-1"><strong>{t('botInfo.medium.algorithm')}</strong></p>
+                  <p className="dark:text-gray-300 text-gray-700 mb-1"><strong>{t('botInfo.medium.depth')}</strong></p>
+                  <p className="dark:text-gray-300 text-gray-700">{t('botInfo.medium.description')}</p>
                 </div>
 
                 <div className="p-3 rounded-lg bg-gray-100 dark:bg-gray-800">
-                  <h4 className="font-bold text-lg mb-2 text-orange-600 dark:text-orange-400">🔥 Zor (Hard)</h4>
-                  <p className="dark:text-gray-300 text-gray-700 mb-1"><strong>Algoritma:</strong> Alpha-Beta Pruning</p>
-                  <p className="dark:text-gray-300 text-gray-700 mb-1"><strong>Derinlik:</strong> 5 (Beş hamle ilerisi)</p>
-                  <p className="dark:text-gray-300 text-gray-700">Akıllı budama ile hızlı ve etkili. İyi oyuncular için zorluk.</p>
+                  <h4 className="font-bold text-lg mb-2 text-orange-600 dark:text-orange-400">🔥 {t('botInfo.hard.name')}</h4>
+                  <p className="dark:text-gray-300 text-gray-700 mb-1"><strong>{t('botInfo.hard.algorithm')}</strong></p>
+                  <p className="dark:text-gray-300 text-gray-700 mb-1"><strong>{t('botInfo.hard.depth')}</strong></p>
+                  <p className="dark:text-gray-300 text-gray-700">{t('botInfo.hard.description')}</p>
                 </div>
 
                 <div className="p-3 rounded-lg bg-gray-100 dark:bg-gray-800">
-                  <h4 className="font-bold text-lg mb-2 text-purple-600 dark:text-purple-400">👑 Usta (Master)</h4>
-                  <p className="dark:text-gray-300 text-gray-700 mb-1"><strong>Algoritma:</strong> Alpha-Beta + Gelişmiş Heuristik</p>
-                  <p className="dark:text-gray-300 text-gray-700 mb-1"><strong>Derinlik:</strong> 7 (Yedi hamle ilerisi)</p>
-                  <p className="dark:text-gray-300 text-gray-700">En gelişmiş algoritma. Stratejik pozisyonları değerlendirir, yakalama fırsatlarını hesaplar.</p>
+                  <h4 className="font-bold text-lg mb-2 text-purple-600 dark:text-purple-400">👑 {t('botInfo.master.name')}</h4>
+                  <p className="dark:text-gray-300 text-gray-700 mb-1"><strong>{t('botInfo.master.algorithm')}</strong></p>
+                  <p className="dark:text-gray-300 text-gray-700 mb-1"><strong>{t('botInfo.master.depth')}</strong></p>
+                  <p className="dark:text-gray-300 text-gray-700">{t('botInfo.master.description')}</p>
                 </div>
               </div>
               <div className="mt-4 pt-4 border-t dark:border-gray-600 border-gray-300">
                 <p className="text-xs dark:text-gray-400 text-gray-600">
-                  💡 <strong>Not:</strong> Tüm botlar aynı hızda düşünür, fark sadece algoritma derinliğindedir.
+                  {t('botInfo.note')}
                 </p>
               </div>
             </div>
@@ -264,10 +264,10 @@ const Menu: React.FC<MenuProps> = ({ onStartGame }) => {
               onChange={(e) => changeLanguage(e.target.value)}
               className="btn btn-secondary w-full appearance-none"
             >
-              <option value="tr">TR</option>
-              <option value="kk">KZ</option>
-              <option value="en">EN</option>
-              <option value="ru">RU</option>
+              <option value="tr">🇹🇷 TR</option>
+              <option value="kk">🇰🇿 KZ</option>
+              <option value="en">🇬🇧 EN</option>
+              <option value="ru">🇷🇺 RU</option>
             </select>
           </div>
         </div>
