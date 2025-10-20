@@ -87,9 +87,21 @@
     "notYourTurn": "Not your turn",
     "notYourPit": "Can only select pits in your zone",
     "extraTurn": "Extra turn!",
-    "captured": "Captured {{count}} stones!",
+    "captured": "{{count}} stones captured!",
+    "capturedDoubling": "Doubling Rule! Captured {{count}} stones!",
+    "capturedFox": "Fox Rule! Captured {{count}} stones!",
     "setWon": "{{player}} won the set!",
+    "setFinished": "Set finished!",
+    "setFinishedWinner": "Set finished! Winner: {{winner}}",
     "gameWon": "{{player}} won the game!",
-    "thinking": "Thinking..."
+    "thinking": "Thinking...",
+    "turnIndicator": "{{player}}'s turn"
+  },
+  "moveHistory": {
+    "title": "Move History",
+    "empty": "No moves yet",
+    "pit": "Pit",
+    "extraTurn": "Extra Turn",
+    "totalMoves": "Total Moves"
   }
 }

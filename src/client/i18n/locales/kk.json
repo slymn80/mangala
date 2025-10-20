@@ -86,10 +86,22 @@
     "emptyPit": "Бос шұңқыр таңдалмайды",
     "notYourTurn": "Қазір сіздің кезегіңіз емес",
     "notYourPit": "Тек өз аймағыңыздағы шұңқырларды таңдай аласыз",
-    "extraTurn": "Қосымша кезек алдыңыз!",
-    "captured": "{{count}} тас ұстадыңыз!",
+    "extraTurn": "Қосымша кезек!",
+    "captured": "{{count}} тас ұсталды!",
+    "capturedDoubling": "Жұптау Ережесі! {{count}} тас ұстадыңыз!",
+    "capturedFox": "Түлкі Ережесі! {{count}} тас ұстадыңыз!",
     "setWon": "{{player}} сетті жеңді!",
+    "setFinished": "Сет аяқталды!",
+    "setFinishedWinner": "Сет аяқталды! Жеңімпаз: {{winner}}",
     "gameWon": "{{player}} ойынды жеңді!",
-    "thinking": "Ойланып жатыр..."
+    "thinking": "Ойланып жатыр...",
+    "turnIndicator": "Кезек {{player}}'де"
+  },
+  "moveHistory": {
+    "title": "Жүріс Тарихы",
+    "empty": "Әлі жүріс жасалмады",
+    "pit": "Шұңқыр",
+    "extraTurn": "Қосымша Кезек",
+    "totalMoves": "Барлық Жүріс"
   }
 }

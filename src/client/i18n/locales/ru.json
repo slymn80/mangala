@@ -87,10 +87,22 @@
     "emptyPit": "Нельзя выбрать пустую ямку",
     "notYourTurn": "Сейчас не ваш ход",
     "notYourPit": "Можно выбирать только свои ямки",
-    "extraTurn": "Вы получили дополнительный ход!",
-    "captured": "Вы захватили {{count}} камней!",
+    "extraTurn": "Дополнительный ход!",
+    "captured": "{{count}} камней захвачено!",
+    "capturedDoubling": "Правило Удвоения! Захвачено {{count}} камней!",
+    "capturedFox": "Правило Лисы! Захвачено {{count}} камней!",
     "setWon": "{{player}} выиграл сет!",
+    "setFinished": "Сет окончен!",
+    "setFinishedWinner": "Сет окончен! Победитель: {{winner}}",
     "gameWon": "{{player}} выиграл игру!",
-    "thinking": "Думает..."
+    "thinking": "Думает...",
+    "turnIndicator": "Ход {{player}}"
+  },
+  "moveHistory": {
+    "title": "История Ходов",
+    "empty": "Ходов пока нет",
+    "pit": "Ямка",
+    "extraTurn": "Доп. Ход",
+    "totalMoves": "Всего Ходов"
   }
 }

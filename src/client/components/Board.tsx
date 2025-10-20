@@ -175,7 +175,7 @@ const Board: React.FC = () => {
           <p className="text-xs sm:text-sm dark:text-gray-400 text-gray-600 mb-1">{t('score.set')}</p>
           <p className="text-xl sm:text-2xl md:text-3xl font-bold dark:text-white text-gray-900">{game.currentSetIndex + 1} / 5</p>
           <p className="text-xs sm:text-sm text-yellow-500 mt-2 animate-pulse font-semibold">
-            Sıra {currentPlayer === 'player1' ? game.player1Name : game.player2Name}'de
+            {t('messages.turnIndicator', { player: currentPlayer === 'player1' ? game.player1Name : game.player2Name })}
           </p>
         </div>
         <div className="card text-center p-3 md:p-4 min-w-[120px]">

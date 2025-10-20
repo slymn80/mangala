@@ -7,6 +7,7 @@ import { persist } from 'zustand/middleware';
 import type { GameState, SetState } from '../../types/game.types';
 import { initializeGame, applyMove, updateGameScore } from '../../engine/engine';
 import { getBotMove } from '../../engine/bot';
+import i18n from '../i18n/i18n';
 
 // Ses çalma helper fonksiyonu
 const playSound = (soundFile: string, volume: number, enabled: boolean) => {
@@ -111,7 +112,7 @@ export const useGameStore = create<GameStore>()(
     const currentSet = game.sets[game.currentSetIndex];
 
     if (currentSet.status === 'finished') {
-      set({ message: 'Set bitti!' });
+      set({ message: i18n.t('messages.setFinished') });
       return;
     }
 
@@ -196,7 +197,7 @@ export const useGameStore = create<GameStore>()(
         playSound('/assets/sounds/level-complete-394515.mp3', volume, soundEnabled);
       }
 
-      set({ message: `Set bitti! Kazanan: ${result.setWinner}` });
+      set({ message: i18n.t('messages.setFinishedWinner', { winner: result.setWinner }) });
       setTimeout(() => set({ message: null }), 2000);
 
       // Bot sırası kontrolü artık Board.tsx useEffect'inde yapılıyor
@@ -217,18 +218,18 @@ export const useGameStore = create<GameStore>()(
       if (result.extraTurn) {
         setTimeout(() => {
           playSound('/assets/sounds/combine-special-394482.mp3', volume, soundEnabled);
-          set({ message: 'Ekstra tur!' });
+          set({ message: i18n.t('messages.extraTurn') });
           setTimeout(() => set({ message: null }), 1500);
         }, bubblePopTime);
       } else if (result.capturedStones > 0) {
         setTimeout(() => {
           playSound('/assets/sounds/clear-combo-4-394493.mp3', volume, soundEnabled);
           // Kural tipine göre mesaj göster
-          let message = `${result.capturedStones} taş yakalandı!`;
+          let message = i18n.t('messages.captured', { count: result.capturedStones });
           if (result.rule === 'RULE_18_CAPTURE_EVEN') {
-            message = `Çiftleme Kuralı! ${result.capturedStones} taş yakaladınız!`;
+            message = i18n.t('messages.capturedDoubling', { count: result.capturedStones });
           } else if (result.rule === 'RULE_19_CAPTURE_OPPOSITE') {
-            message = `Tilki Kuralı! ${result.capturedStones} taş yakaladınız!`;
+            message = i18n.t('messages.capturedFox', { count: result.capturedStones });
           }
           set({ message });
           setTimeout(() => set({ message: null }), 1500);
@@ -317,7 +318,7 @@ export const useGameStore = create<GameStore>()(
     }
 
     // isAnimating true yap - böylece aynı anda birden fazla bot hamlesi engellensin
-    set({ isAnimating: true, message: 'Düşünüyor...' });
+    set({ isAnimating: true, message: i18n.t('messages.thinking') });
 
     // Bot hamlesini hesapla - Tüm zorluk seviyeleri için sabit süre
     const difficulty = game.botDifficulty || 'medium';

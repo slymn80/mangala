@@ -20,10 +20,16 @@ const Menu: React.FC<MenuProps> = ({ onStartGame }) => {
 
   const [gameMode, setGameMode] = useState<GameMode>('pvp');
   const [botDifficulty, setBotDifficulty] = useState<BotDifficulty>('medium');
-  const [player1Name, setPlayer1Name] = useState('Oyuncu 1');
-  const [player2Name, setPlayer2Name] = useState('Oyuncu 2');
+  const [player1Name, setPlayer1Name] = useState(t('game.player1'));
+  const [player2Name, setPlayer2Name] = useState(t('game.player2'));
   const [showRules, setShowRules] = useState(false);
   const [showBotInfo, setShowBotInfo] = useState(false);
+
+  // Dil değiştiğinde default isimleri güncelle
+  React.useEffect(() => {
+    setPlayer1Name(t('game.player1'));
+    setPlayer2Name(t('game.player2'));
+  }, [i18n.language, t]);
 
   const handleStartGame = () => {
     startNewGame({

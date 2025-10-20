@@ -86,13 +86,16 @@
     "emptyPit": "Boş kuyu seçilemez",
     "notYourTurn": "Şu an sizin sıranız değil",
     "notYourPit": "Sadece kendi bölgenizdeki kuyuları seçebilirsiniz",
-    "extraTurn": "Ekstra tur kazandınız!",
-    "captured": "{{count}} taş yakaladınız!",
+    "extraTurn": "Ekstra tur!",
+    "captured": "{{count}} taş yakalandı!",
     "capturedDoubling": "Çiftleme Kuralı! {{count}} taş yakaladınız!",
     "capturedFox": "Tilki Kuralı! {{count}} taş yakaladınız!",
     "setWon": "{{player}} seti kazandı!",
+    "setFinished": "Set bitti!",
+    "setFinishedWinner": "Set bitti! Kazanan: {{winner}}",
     "gameWon": "{{player}} oyunu kazandı!",
-    "thinking": "Düşünüyor..."
+    "thinking": "Düşünüyor...",
+    "turnIndicator": "Sıra {{player}}'de"
   },
   "moveHistory": {
     "title": "Hamle Geçmişi",
