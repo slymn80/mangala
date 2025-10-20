@@ -55,11 +55,30 @@ const Board: React.FC = () => {
     }
   }, [game?.currentSetIndex, game?.sets[game?.currentSetIndex || 0]?.currentPlayer, isAnimating]);
 
-  if (!game) return null;
+  if (!game) {
+    console.log('[BOARD] Game yok, render edilmiyor');
+    return null;
+  }
 
   const currentSet = game.sets[game.currentSetIndex];
+
+  if (!currentSet) {
+    console.error('[BOARD] Current set bulunamadı!', {
+      currentSetIndex: game.currentSetIndex,
+      totalSets: game.sets.length
+    });
+    return <div className="text-center p-8 text-red-500">Set yükleniyor...</div>;
+  }
+
   const board = currentSet.board;
   const currentPlayer = currentSet.currentPlayer;
+
+  console.log('[BOARD RENDER]', {
+    setIndex: game.currentSetIndex,
+    setStatus: currentSet.status,
+    currentPlayer,
+    gameStatus: game.status
+  });
 
   // Player 2'nin kuyuları (üst sıra, ters sırada görüntülenir: 12, 11, 10, 9, 8, 7)
   const player2Pits = [12, 11, 10, 9, 8, 7];
