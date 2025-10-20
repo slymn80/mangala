@@ -69,7 +69,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
   animationsEnabled: true,
   theme: 'light',
   boardStyle: 'wood',
-  stoneColor: 'red',
+  stoneColor: 'blue',
 
   // Actions
   startNewGame: (params) => {

@@ -65,7 +65,7 @@ const Pit: React.FC<PitProps> = ({ pitIndex, stones, isActive }) => {
       <div
         onClick={handleClick}
         className={`
-          w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full
+          w-10 h-10 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full
           flex items-center justify-center
           relative cursor-pointer
           transition-all duration-300

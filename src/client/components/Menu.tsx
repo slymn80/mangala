@@ -156,10 +156,10 @@ const Menu: React.FC<MenuProps> = ({ onStartGame }) => {
             </div>
           ) : (
             <div className="space-y-4">
-              <h3 className="text-2xl font-bold mb-4">{t('rules.title')}</h3>
+              <h3 className="text-2xl font-bold mb-4 dark:text-white text-gray-900">{t('rules.title')}</h3>
               <div className="max-h-96 overflow-y-auto space-y-2 text-sm">
                 {Array.from({ length: 23 }, (_, i) => i + 1).map((num) => (
-                  <p key={num} className="text-gray-300">
+                  <p key={num} className="dark:text-gray-300 text-gray-800">
                     {t(`rules.rule${num}`)}
                   </p>
                 ))}

@@ -38,7 +38,7 @@ const Treasure: React.FC<TreasureProps> = ({ stones, player, isActive }) => {
       {/* Hazne */}
       <div
         className={`
-          w-16 h-32 sm:w-20 sm:h-40 md:w-24 md:h-48 rounded-2xl sm:rounded-3xl
+          w-12 h-28 sm:w-20 sm:h-40 md:w-24 md:h-48 rounded-2xl sm:rounded-3xl
           flex flex-col items-center justify-center
           relative
           transition-all duration-300

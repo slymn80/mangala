@@ -3,7 +3,7 @@
  * 12 küçük kuyu + 2 büyük hazne
  */
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useGameStore } from '../store/gameStore';
 import Pit from './Pit';
 import Treasure from './Treasure';
@@ -14,7 +14,14 @@ const Board: React.FC = () => {
   const game = useGameStore((state) => state.game);
   const boardStyle = useGameStore((state) => state.boardStyle);
   const isAnimating = useGameStore((state) => state.isAnimating);
+  const theme = useGameStore((state) => state.theme);
+  const setTheme = useGameStore((state) => state.setTheme);
+  const soundEnabled = useGameStore((state) => state.soundEnabled);
+  const toggleSound = useGameStore((state) => state.toggleSound);
+  const volume = useGameStore((state) => state.volume);
+  const setVolume = useGameStore((state) => state.setVolume);
   const lastBotMoveRef = useRef<string>('');
+  const [showSettings, setShowSettings] = useState(false);
 
   // Bot sırası kontrolü - Her state değişiminde kontrol et
   useEffect(() => {
@@ -66,7 +73,60 @@ const Board: React.FC = () => {
       : 'bg-gradient-to-br from-blue-500 to-blue-700';
 
   return (
-    <div className="flex flex-col items-center justify-center gap-4 md:gap-8 p-2 sm:p-4 md:p-8">
+    <div className="flex flex-col items-center justify-center gap-2 sm:gap-4 md:gap-8 p-2 sm:p-4 md:p-8 relative">
+      {/* Settings Button - Sağ Üst */}
+      <button
+        onClick={() => setShowSettings(!showSettings)}
+        className="absolute top-2 right-2 z-50 btn btn-secondary p-2 rounded-full w-10 h-10 flex items-center justify-center"
+        title="Ayarlar"
+      >
+        ⚙️
+      </button>
+
+      {/* Settings Panel */}
+      {showSettings && (
+        <div className="absolute top-14 right-2 z-50 card p-4 space-y-4 min-w-[200px]">
+          <h3 className="font-bold text-sm dark:text-white text-gray-900">{t('settings.title') || 'Ayarlar'}</h3>
+
+          {/* Tema */}
+          <div className="flex items-center justify-between">
+            <span className="text-xs dark:text-gray-300 text-gray-700">{t('theme.theme') || 'Tema'}</span>
+            <button
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              className="btn btn-secondary px-3 py-1 text-xs"
+            >
+              {theme === 'dark' ? '☀️' : '🌙'}
+            </button>
+          </div>
+
+          {/* Ses Açma/Kapama */}
+          <div className="flex items-center justify-between">
+            <span className="text-xs dark:text-gray-300 text-gray-700">{t('settings.sound') || 'Ses'}</span>
+            <button
+              onClick={toggleSound}
+              className="btn btn-secondary px-3 py-1 text-xs"
+            >
+              {soundEnabled ? '🔊' : '🔇'}
+            </button>
+          </div>
+
+          {/* Ses Seviyesi */}
+          {soundEnabled && (
+            <div className="space-y-1">
+              <label className="text-xs dark:text-gray-300 text-gray-700">{t('settings.volume') || 'Ses Seviyesi'}: {volume}%</label>
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value={volume}
+                onChange={(e) => setVolume(Number(e.target.value))}
+                className="w-full"
+              />
+            </div>
+          )}
+        </div>
+      )}
+
       {/* Player 2 Bilgileri */}
       <div className="text-center">
         <h2 className={`text-lg sm:text-xl md:text-2xl font-bold ${currentPlayer === 'player2' ? 'text-yellow-500 animate-pulse' : 'dark:text-white text-gray-900'}`}>
@@ -77,7 +137,7 @@ const Board: React.FC = () => {
       </div>
 
       {/* Oyun Tahtası */}
-      <div className={`${boardBgClass} rounded-2xl md:rounded-3xl shadow-2xl p-3 sm:p-4 md:p-8 relative w-full max-w-4xl`}>
+      <div className={`${boardBgClass} rounded-2xl md:rounded-3xl shadow-2xl p-2 sm:p-4 md:p-8 relative w-full max-w-4xl`}>
         {/* İç Çerçeve */}
         <div className="absolute inset-4 border-4 border-yellow-600 rounded-2xl opacity-30"></div>
 
