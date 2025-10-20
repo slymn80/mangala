@@ -6,7 +6,6 @@ import React, { useState, useEffect } from 'react';
 import { useGameStore } from './store/gameStore';
 import Menu from './components/Menu';
 import Board from './components/Board';
-import MoveHistory from './components/MoveHistory';
 import GameOverModal from './components/GameOverModal';
 import MessageToast from './components/MessageToast';
 import { useTranslation } from 'react-i18next';
@@ -130,12 +129,7 @@ const App: React.FC = () => {
                 </div>
               </div>
             ) : (
-              <div className="flex gap-4 justify-center items-start p-4">
-                <Board />
-                <div className="hidden lg:block">
-                  <MoveHistory />
-                </div>
-              </div>
+              <Board />
             )}
           </>
         )}

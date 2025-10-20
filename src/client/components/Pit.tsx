@@ -71,30 +71,31 @@ const Pit: React.FC<PitProps> = ({ pitIndex, stones, isActive, isStartPit = fals
       {/* Kuyu Numarası - 1'den başlayarak 12'ye kadar */}
       <span className="text-xs sm:text-sm font-bold text-yellow-600 dark:text-yellow-400 mb-0.5 sm:mb-1 drop-shadow-md">{displayNumber}</span>
 
-      {/* Kuyu - Artık sadece taşların konteyneri, arka plan yok */}
+      {/* Kuyu - Ahşap görünümlü delik */}
       <div
         onClick={handleClick}
         className={`
-          w-10 h-10 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full
+          w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full
           flex items-center justify-center
           relative cursor-pointer
           transition-all duration-200
-          ${canClick ? 'hover:scale-110' : 'opacity-80 cursor-not-allowed'}
-          ${isSelected ? 'ring-2 sm:ring-4 ring-yellow-400 shadow-glow scale-110' : ''}
-          ${isStartPit ? 'ring-2 sm:ring-3 ring-green-500' : ''}
-          ${isEndPit ? 'ring-2 sm:ring-3 ring-purple-500' : ''}
-          ${isReceivingStone ? 'ring-4 ring-cyan-400 scale-125 animate-pulse' : ''}
+          ${canClick ? 'hover:scale-105' : 'opacity-80 cursor-not-allowed'}
+          ${isSelected ? 'ring-4 ring-yellow-400 scale-105' : ''}
+          ${isStartPit ? 'ring-3 ring-green-500' : ''}
+          ${isEndPit ? 'ring-3 ring-purple-500' : ''}
+          ${isReceivingStone ? 'ring-4 ring-cyan-400 scale-110 animate-pulse' : ''}
         `}
         style={{
+          background: 'radial-gradient(circle at 30% 30%, #3e2723, #1a1311)',
           boxShadow: isSelected
-            ? '0 0 20px rgba(251, 191, 36, 0.8)'
+            ? '0 0 20px rgba(251, 191, 36, 0.8), inset 0 4px 12px rgba(0,0,0,0.8)'
             : isReceivingStone
-            ? '0 0 25px rgba(34, 211, 238, 0.9)'
+            ? '0 0 25px rgba(34, 211, 238, 0.9), inset 0 4px 12px rgba(0,0,0,0.8)'
             : isStartPit
-            ? '0 0 15px rgba(34, 197, 94, 0.6)'
+            ? '0 0 15px rgba(34, 197, 94, 0.6), inset 0 4px 12px rgba(0,0,0,0.8)'
             : isEndPit
-            ? '0 0 15px rgba(168, 85, 247, 0.6)'
-            : 'none'
+            ? '0 0 15px rgba(168, 85, 247, 0.6), inset 0 4px 12px rgba(0,0,0,0.8)'
+            : 'inset 0 4px 12px rgba(0,0,0,0.8), inset 0 -2px 4px rgba(139,69,19,0.3)'
         }}
       >
         {/* Taş Sayısı */}

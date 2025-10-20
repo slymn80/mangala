@@ -37,22 +37,23 @@ const Treasure: React.FC<TreasureProps> = ({ stones, player, isActive }) => {
 
   return (
     <div className="flex flex-col items-center gap-1 sm:gap-2">
-      {/* Hazne - Şeffaf, sadece taşları gösteriyor */}
+      {/* Hazne - Ahşap görünümlü büyük delik */}
       <div
         className={`
-          w-12 h-28 sm:w-20 sm:h-40 md:w-24 md:h-48 rounded-2xl sm:rounded-3xl
+          w-24 h-40 sm:w-28 sm:h-48 md:w-32 md:h-56 rounded-3xl
           flex flex-col items-center justify-center
           relative
           transition-all duration-200
-          ${isActive ? 'ring-1 sm:ring-2 ring-yellow-400' : ''}
-          ${isReceivingStone ? 'ring-4 ring-cyan-400 scale-110 animate-pulse' : ''}
+          ${isActive ? 'ring-2 ring-yellow-400' : ''}
+          ${isReceivingStone ? 'ring-4 ring-cyan-400 scale-105 animate-pulse' : ''}
         `}
         style={{
+          background: 'linear-gradient(180deg, #2c1810 0%, #1a0f0a 50%, #2c1810 100%)',
           boxShadow: isActive
-            ? '0 0 20px rgba(251, 191, 36, 0.5)'
+            ? '0 0 20px rgba(251, 191, 36, 0.5), inset 0 8px 20px rgba(0,0,0,0.9)'
             : isReceivingStone
-            ? '0 0 30px rgba(34, 211, 238, 0.9)'
-            : 'none'
+            ? '0 0 30px rgba(34, 211, 238, 0.9), inset 0 8px 20px rgba(0,0,0,0.9)'
+            : 'inset 0 8px 20px rgba(0,0,0,0.9), inset 0 -4px 8px rgba(139,69,19,0.3)'
         }}
       >
 
