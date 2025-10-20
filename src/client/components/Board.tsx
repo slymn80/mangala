@@ -10,7 +10,7 @@ import Treasure from './Treasure';
 import { useTranslation } from 'react-i18next';
 
 const Board: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const game = useGameStore((state) => state.game);
   const boardStyle = useGameStore((state) => state.boardStyle);
   const isAnimating = useGameStore((state) => state.isAnimating);
@@ -125,6 +125,21 @@ const Board: React.FC = () => {
               />
             </div>
           )}
+
+          {/* Dil Seçici */}
+          <div className="space-y-1">
+            <label className="text-xs dark:text-gray-300 text-gray-700">{t('settings.language') || 'Dil'}</label>
+            <select
+              value={i18n.language}
+              onChange={(e) => i18n.changeLanguage(e.target.value)}
+              className="w-full p-2 rounded dark:bg-gray-700 bg-white dark:text-white text-gray-900 text-xs border dark:border-gray-600 border-gray-300"
+            >
+              <option value="tr">🇹🇷 Türkçe</option>
+              <option value="kk">🇰🇿 Қазақша</option>
+              <option value="en">🇬🇧 English</option>
+              <option value="ru">🇷🇺 Русский</option>
+            </select>
+          </div>
         </div>
       )}
 
