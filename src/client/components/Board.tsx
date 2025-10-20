@@ -74,7 +74,7 @@ const Board: React.FC = () => {
       : 'bg-gradient-to-br from-blue-500 to-blue-700';
 
   return (
-    <div className="flex flex-col items-center justify-center gap-2 sm:gap-4 md:gap-8 p-2 sm:p-4 md:p-8 relative">
+    <div className="flex flex-col landscape:flex-row items-center justify-center gap-2 sm:gap-4 md:gap-8 p-2 sm:p-4 md:p-8 relative landscape:h-screen landscape:overflow-hidden">
       {/* Settings Button - Sağ Üst */}
       <button
         onClick={() => setShowSettings(!showSettings)}
@@ -144,17 +144,24 @@ const Board: React.FC = () => {
       )}
 
       {/* Player 2 Bilgileri */}
-      <div className="text-center">
-        <h2 className={`text-lg sm:text-xl md:text-2xl font-bold ${currentPlayer === 'player2' ? 'text-yellow-500 animate-pulse' : 'dark:text-white text-gray-900'}`}>
+      <div className="text-center landscape:text-left landscape:self-center landscape:order-1">
+        <h2 className={`text-lg sm:text-xl md:text-2xl landscape:text-base font-bold ${currentPlayer === 'player2' ? 'text-yellow-500 animate-pulse' : 'dark:text-white text-gray-900'}`}>
           {game.player2Name}
           {currentPlayer === 'player2' && ` - ${t('game.yourTurn')}`}
         </h2>
-        <p className="text-xs sm:text-sm dark:text-gray-400 text-gray-600">{t('game.player2')}</p>
+        <p className="text-xs sm:text-sm landscape:text-xs dark:text-gray-400 text-gray-600">{t('game.player2')}</p>
+        {/* Skor - Landscape modda oyuncu bilgisinin altında */}
+        <div className="hidden landscape:block mt-2">
+          <div className="card text-center p-2">
+            <p className="text-xs dark:text-gray-400 text-gray-600">{t('score.stones')}</p>
+            <p className="text-2xl font-bold text-red-500">{game.scores.player2}</p>
+          </div>
+        </div>
       </div>
 
       {/* Oyun Tahtası */}
       <div
-        className="rounded-2xl md:rounded-3xl shadow-2xl p-2 sm:p-4 md:p-8 relative w-full max-w-4xl"
+        className="rounded-2xl md:rounded-3xl shadow-2xl p-2 sm:p-4 md:p-8 landscape:p-4 relative w-full max-w-4xl landscape:max-w-2xl landscape:order-2"
         style={{
           backgroundImage: 'linear-gradient(to bottom right, rgba(139, 69, 19, 0.7), rgba(101, 67, 33, 0.7)), url(/assets/images/mangala_tahtasi_logolu.jpg)',
           backgroundSize: 'cover',
@@ -221,16 +228,23 @@ const Board: React.FC = () => {
       </div>
 
       {/* Player 1 Bilgileri */}
-      <div className="text-center">
-        <h2 className={`text-lg sm:text-xl md:text-2xl font-bold ${currentPlayer === 'player1' ? 'text-yellow-500 animate-pulse' : 'dark:text-white text-gray-900'}`}>
+      <div className="text-center landscape:text-right landscape:self-center landscape:order-3">
+        <h2 className={`text-lg sm:text-xl md:text-2xl landscape:text-base font-bold ${currentPlayer === 'player1' ? 'text-yellow-500 animate-pulse' : 'dark:text-white text-gray-900'}`}>
           {game.player1Name}
           {currentPlayer === 'player1' && ` - ${t('game.yourTurn')}`}
         </h2>
-        <p className="text-xs sm:text-sm dark:text-gray-400 text-gray-600">{t('game.player1')}</p>
+        <p className="text-xs sm:text-sm landscape:text-xs dark:text-gray-400 text-gray-600">{t('game.player1')}</p>
+        {/* Skor - Landscape modda oyuncu bilgisinin altında */}
+        <div className="hidden landscape:block mt-2">
+          <div className="card text-center p-2">
+            <p className="text-xs dark:text-gray-400 text-gray-600">{t('score.stones')}</p>
+            <p className="text-2xl font-bold text-blue-500">{game.scores.player1}</p>
+          </div>
+        </div>
       </div>
 
-      {/* Skor Tablosu */}
-      <div className="flex gap-3 sm:gap-4 md:gap-8 mt-2 md:mt-4">
+      {/* Skor Tablosu - Sadece portrait modda görünür */}
+      <div className="flex gap-3 sm:gap-4 md:gap-8 mt-2 md:mt-4 landscape:hidden">
         <div className="card text-center p-2 sm:p-3 md:p-4">
           <p className="text-xs sm:text-sm dark:text-gray-400 text-gray-600">{game.player1Name}</p>
           <p className="text-xl sm:text-2xl md:text-3xl font-bold text-blue-500">{game.scores.player1}</p>
@@ -242,6 +256,14 @@ const Board: React.FC = () => {
         <div className="card text-center p-2 sm:p-3 md:p-4">
           <p className="text-xs sm:text-sm dark:text-gray-400 text-gray-600">{game.player2Name}</p>
           <p className="text-xl sm:text-2xl md:text-3xl font-bold text-red-500">{game.scores.player2}</p>
+        </div>
+      </div>
+
+      {/* Set Bilgisi - Sadece landscape modda, tahtanın altında */}
+      <div className="hidden landscape:block absolute bottom-2 left-1/2 transform -translate-x-1/2">
+        <div className="card text-center p-2">
+          <p className="text-xs dark:text-gray-400 text-gray-600">{t('score.set')}</p>
+          <p className="text-base font-bold dark:text-white text-gray-900">{game.currentSetIndex + 1} / 5</p>
         </div>
       </div>
     </div>
