@@ -306,9 +306,9 @@ export const useGameStore = create<GameStore>()(
     // isAnimating true yap - böylece aynı anda birden fazla bot hamlesi engellensin
     set({ isAnimating: true, message: 'Düşünüyor...' });
 
-    // Bot hamlesini hesapla - Tüm zorluk seviyeleri aktif
-    const difficulty = game.difficulty || 'easy';
-    const thinkTime = difficulty === 'easy' ? 300 : difficulty === 'medium' ? 500 : 800;
+    // Bot hamlesini hesapla - Tüm zorluk seviyeleri için sabit süre
+    const difficulty = game.botDifficulty || 'medium';
+    const thinkTime = 1000; // Tüm seviyeler için sabit düşünme süresi
 
     const botMove = getBotMove(
       game,
@@ -317,7 +317,7 @@ export const useGameStore = create<GameStore>()(
       thinkTime
     );
 
-    console.log('[BOT] Bot hamlesi hesaplandı:', botMove);
+    console.log('[BOT] Bot hamlesi hesaplandı:', { difficulty, botMove });
 
     if (botMove === -1) {
       console.log('[BOT] Bot hamle yapamadı - geçerli hamle yok');
@@ -326,7 +326,8 @@ export const useGameStore = create<GameStore>()(
     }
 
     // Normal insan hızında hamle yap (1-2 saniye arası düşünme süresi)
-    const thinkingTime = game.difficulty === 'easy' ? 800 : game.difficulty === 'medium' ? 1200 : 1500;
+    // Tüm zorluk seviyeleri için aynı görünür düşünme süresi
+    const thinkingTime = 1200;
 
     setTimeout(() => {
       set({ message: null, isAnimating: false }); // isAnimating'i false yap ki makeMove kabul etsin
