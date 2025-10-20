@@ -171,20 +171,29 @@ export const useGameStore = create<GameStore>((set, get) => ({
         currentPlayer: updatedGame.sets[updatedGame.currentSetIndex]?.currentPlayer
       });
     } else {
-      // Mesaj ve ses göster
+      // Animasyon süresi: bubble pop seslerinin bitmesini bekle
+      const stoneCount = result.stoneMoves?.length || 0;
+      const bubblePopTime = stoneCount * 150; // Her taş arası 150ms
+      const baseAnimationTime = get().animationsEnabled ? 600 : 100;
+      const animationTime = Math.max(baseAnimationTime, bubblePopTime + 200); // +200ms buffer
+
+      // Mesaj ve ses göster (bubble pop bittikten sonra)
       const { soundEnabled, volume } = get();
 
       if (result.extraTurn) {
-        playSound('/assets/sounds/combine-special-394482.mp3', volume, soundEnabled);
-        set({ message: 'Ekstra tur!' });
-        setTimeout(() => set({ message: null }), 1500);
+        setTimeout(() => {
+          playSound('/assets/sounds/combine-special-394482.mp3', volume, soundEnabled);
+          set({ message: 'Ekstra tur!' });
+          setTimeout(() => set({ message: null }), 1500);
+        }, bubblePopTime);
       } else if (result.capturedStones > 0) {
-        playSound('/assets/sounds/clear-combo-4-394493.mp3', volume, soundEnabled);
-        set({ message: `${result.capturedStones} taş yakalandı!` });
-        setTimeout(() => set({ message: null }), 1500);
+        setTimeout(() => {
+          playSound('/assets/sounds/clear-combo-4-394493.mp3', volume, soundEnabled);
+          set({ message: `${result.capturedStones} taş yakalandı!` });
+          setTimeout(() => set({ message: null }), 1500);
+        }, bubblePopTime);
       }
 
-      const animationTime = get().animationsEnabled ? 600 : 100;
       const isBotNext = updatedGame.mode === 'pve' && result.nextPlayer === 'player2' && !result.setFinished;
 
       setTimeout(() => {
