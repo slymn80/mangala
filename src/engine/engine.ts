@@ -208,7 +208,9 @@ export function applyMove(gameState: GameState, pitIndex: number): MoveResult {
     setFinished,
     setWinner: setFinished ? winner : undefined,
     rule: ruleApplied,
-    stoneMoves // Her taşın düştüğü kuyu indeksleri
+    stoneMoves, // Her taşın düştüğü kuyu indeksleri
+    startPit: pitIndex, // Hamlenin başladığı kuyu
+    endPit: lastPitIndex // Son taşın düştüğü kuyu
   };
 }
 

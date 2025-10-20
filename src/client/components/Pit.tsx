@@ -13,9 +13,11 @@ interface PitProps {
   stones: number;
   player: Player; // eslint-disable-line @typescript-eslint/no-unused-vars
   isActive: boolean;
+  isStartPit?: boolean; // Son hamlenin başlangıç kuyusu
+  isEndPit?: boolean; // Son hamlenin bitiş kuyusu
 }
 
-const Pit: React.FC<PitProps> = ({ pitIndex, stones, isActive }) => {
+const Pit: React.FC<PitProps> = ({ pitIndex, stones, isActive, isStartPit = false, isEndPit = false }) => {
   const makeMove = useGameStore((state) => state.makeMove);
   const selectedPit = useGameStore((state) => state.selectedPit);
   const selectPit = useGameStore((state) => state.selectPit);
@@ -71,12 +73,18 @@ const Pit: React.FC<PitProps> = ({ pitIndex, stones, isActive }) => {
           transition-all duration-300
           ${canClick ? 'hover:scale-110 hover:shadow-lg' : 'opacity-60 cursor-not-allowed'}
           ${isSelected ? 'ring-2 sm:ring-4 ring-yellow-400 shadow-glow scale-110' : ''}
+          ${isStartPit ? 'ring-2 sm:ring-3 ring-green-500' : ''}
+          ${isEndPit ? 'ring-2 sm:ring-3 ring-purple-500' : ''}
           ${isActive && stones > 0 ? 'shadow-md' : ''}
         `}
         style={{
           background: 'radial-gradient(circle at 30% 30%, #d2691e, #8b4513)',
           boxShadow: isSelected
             ? '0 0 20px rgba(251, 191, 36, 0.8), inset 0 -4px 8px rgba(0, 0, 0, 0.4)'
+            : isStartPit
+            ? '0 0 15px rgba(34, 197, 94, 0.6), inset 0 -4px 8px rgba(0, 0, 0, 0.4)'
+            : isEndPit
+            ? '0 0 15px rgba(168, 85, 247, 0.6), inset 0 -4px 8px rgba(0, 0, 0, 0.4)'
             : 'inset 0 -4px 8px rgba(0, 0, 0, 0.4)'
         }}
       >

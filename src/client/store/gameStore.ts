@@ -24,6 +24,7 @@ interface GameStore {
   isAnimating: boolean;
   message: string | null;
   isBotThinking: boolean;
+  lastMove: { startPit: number; endPit: number } | null;
 
   // Settings
   soundEnabled: boolean;
@@ -61,6 +62,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
   isAnimating: false,
   message: null,
   isBotThinking: false,
+  lastMove: null,
 
   // Default Settings
   soundEnabled: true,
@@ -74,7 +76,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
   // Actions
   startNewGame: (params) => {
     const game = initializeGame(params);
-    set({ game, selectedPit: null, message: null, isAnimating: false, isBotThinking: false });
+    set({ game, selectedPit: null, message: null, isAnimating: false, isBotThinking: false, lastMove: null });
     // Bot sırası kontrolü artık Board.tsx useEffect'inde yapılıyor
   },
 
@@ -144,8 +146,11 @@ export const useGameStore = create<GameStore>((set, get) => ({
       sets: newSets
     };
 
-    // State'i güncelle (önce!)
-    set({ game: updatedGame, selectedPit: null });
+    // State'i güncelle (önce!) - lastMove bilgisini sakla
+    const lastMoveInfo = result.startPit !== undefined && result.endPit !== undefined
+      ? { startPit: result.startPit, endPit: result.endPit }
+      : null;
+    set({ game: updatedGame, selectedPit: null, lastMove: lastMoveInfo });
 
     // Set bittiyse skor güncelle
     if (result.setFinished && result.setWinner) {

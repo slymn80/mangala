@@ -20,6 +20,7 @@ const Board: React.FC = () => {
   const toggleSound = useGameStore((state) => state.toggleSound);
   const volume = useGameStore((state) => state.volume);
   const setVolume = useGameStore((state) => state.setVolume);
+  const lastMove = useGameStore((state) => state.lastMove);
   const lastBotMoveRef = useRef<string>('');
   const [showSettings, setShowSettings] = useState(false);
 
@@ -160,6 +161,8 @@ const Board: React.FC = () => {
                   stones={board.pits[pitIndex]}
                   player="player2"
                   isActive={currentPlayer === 'player2'}
+                  isStartPit={lastMove?.startPit === pitIndex}
+                  isEndPit={lastMove?.endPit === pitIndex}
                 />
               ))}
             </div>
@@ -173,6 +176,8 @@ const Board: React.FC = () => {
                   stones={board.pits[pitIndex]}
                   player="player1"
                   isActive={currentPlayer === 'player1'}
+                  isStartPit={lastMove?.startPit === pitIndex}
+                  isEndPit={lastMove?.endPit === pitIndex}
                 />
               ))}
             </div>
