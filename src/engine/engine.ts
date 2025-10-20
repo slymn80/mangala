@@ -22,8 +22,10 @@ import type {
  * - 12 küçük kuyu + 2 büyük hazne
  * - 48 taş (her oyuncuya 24)
  * - Her kuyuda başlangıçta 4 taş
+ * - İlk set rastgele başlar, sonraki setler sırayla
  */
 export function initializeGame(params: InitGameParams): GameState {
+  // İlk set rastgele başlar (params'da belirtilmediyse)
   const firstPlayer = params.firstPlayer || (Math.random() < 0.5 ? 'player1' : 'player2');
 
   const initialSet = createNewSet(firstPlayer);
@@ -334,9 +336,24 @@ export function updateGameScore(gameState: GameState, setWinner: Player | 'draw'
   // KURAL 22: 5 set kontrolü
   const totalSets = newState.sets.length;
   if (totalSets < 5) {
-    // Yeni set başlat
-    const firstPlayer = setWinner === 'draw' ? gameState.sets[0].currentPlayer : setWinner;
-    newState.sets.push(createNewSet(firstPlayer));
+    // Yeni set başlat - Sırayla oyuncular başlar
+    // Set 1 (index 0): Rastgele başlayan oyuncu
+    // Set 2 (index 1): Diğer oyuncu başlar
+    // Set 3 (index 2): İlk oyuncu başlar
+    // Set 4 (index 3): Diğer oyuncu başlar
+    // Set 5 (index 4): İlk oyuncu başlar
+    const firstSetStarter = gameState.sets[0].currentPlayer; // İlk setin başlangıç oyuncusu
+    let nextStarter: Player;
+
+    if (totalSets % 2 === 1) {
+      // Tek numaralı setler (2, 4): Diğer oyuncu başlar
+      nextStarter = firstSetStarter === 'player1' ? 'player2' : 'player1';
+    } else {
+      // Çift numaralı setler (3, 5): İlk oyuncu başlar
+      nextStarter = firstSetStarter;
+    }
+
+    newState.sets.push(createNewSet(nextStarter));
     newState.currentSetIndex = totalSets;
   } else {
     // Oyun bitti
