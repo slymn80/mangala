@@ -156,10 +156,10 @@ const Board: React.FC = () => {
               onChange={(e) => i18n.changeLanguage(e.target.value)}
               className="w-full p-2 rounded dark:bg-gray-700 bg-white dark:text-white text-gray-900 text-xs border dark:border-gray-600 border-gray-300"
             >
-              <option value="tr">🇹🇷 Türkçe</option>
-              <option value="kk">🇰🇿 Қазақша</option>
-              <option value="en">🇬🇧 English</option>
-              <option value="ru">🇷🇺 Русский</option>
+              <option value="tr">TR</option>
+              <option value="kk">KZ</option>
+              <option value="en">EN</option>
+              <option value="ru">RU</option>
             </select>
           </div>
         </div>

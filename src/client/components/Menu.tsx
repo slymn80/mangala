@@ -258,10 +258,10 @@ const Menu: React.FC<MenuProps> = ({ onStartGame }) => {
               onChange={(e) => changeLanguage(e.target.value)}
               className="btn btn-secondary w-full appearance-none"
             >
-              <option value="tr">🇹🇷 TR</option>
-              <option value="kk">🇰🇿 KK</option>
-              <option value="en">🇬🇧 EN</option>
-              <option value="ru">🇷🇺 RU</option>
+              <option value="tr">TR</option>
+              <option value="kk">KZ</option>
+              <option value="en">EN</option>
+              <option value="ru">RU</option>
             </select>
           </div>
         </div>
