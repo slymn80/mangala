@@ -76,7 +76,7 @@ const Menu: React.FC<MenuProps> = ({ onStartGame }) => {
 
         {/* Ana Kart */}
         <div className="card mb-4 sm:mb-6 bounce-in">
-          {!showRules ? (
+          {!showRules && !showBotInfo ? (
             <div className="space-y-6">
               {/* Oyun Modu */}
               <div>
