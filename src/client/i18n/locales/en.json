@@ -50,6 +50,7 @@
     "blue": "Blue"
   },
   "settings": {
+    "title": "Settings",
     "settings": "Settings",
     "sound": "Sound",
     "music": "Music",
