@@ -153,7 +153,15 @@ const Board: React.FC = () => {
       </div>
 
       {/* Oyun Tahtası */}
-      <div className={`${boardBgClass} rounded-2xl md:rounded-3xl shadow-2xl p-2 sm:p-4 md:p-8 relative w-full max-w-4xl`}>
+      <div
+        className="rounded-2xl md:rounded-3xl shadow-2xl p-2 sm:p-4 md:p-8 relative w-full max-w-4xl"
+        style={{
+          backgroundImage: 'linear-gradient(to bottom right, rgba(139, 69, 19, 0.7), rgba(101, 67, 33, 0.7)), url(/assets/images/mangala_tahtasi_logolu.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundBlendMode: 'multiply'
+        }}
+      >
         {/* İç Çerçeve */}
         <div className="absolute inset-4 border-4 border-yellow-600 rounded-2xl opacity-30"></div>
 
