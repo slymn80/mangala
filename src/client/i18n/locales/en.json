@@ -15,7 +15,9 @@
     "continue": "Continue",
     "pause": "Pause",
     "restart": "Restart",
-    "quit": "Quit"
+    "refresh": "Refresh",
+    "quit": "Quit",
+    "confirmRestart": "Are you sure you want to restart the game? Current progress will be lost."
   },
   "setup": {
     "gameMode": "Game Mode",

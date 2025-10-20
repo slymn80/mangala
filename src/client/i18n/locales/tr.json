@@ -15,7 +15,9 @@
     "continue": "Devam Et",
     "pause": "Duraklat",
     "restart": "Yeniden Başlat",
-    "quit": "Çıkış"
+    "refresh": "Yenile",
+    "quit": "Çıkış",
+    "confirmRestart": "Oyunu yenilemek istediğinizden emin misiniz? Mevcut ilerleme kaybolacak."
   },
   "setup": {
     "gameMode": "Oyun Modu",

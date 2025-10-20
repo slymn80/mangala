@@ -47,6 +47,35 @@ const App: React.FC = () => {
     setIsPaused(false);
   };
 
+  const handleRefresh = () => {
+    if (!game) return;
+
+    // Oyun bittiyse direkt yenile, onay sorma
+    if (game.status === 'finished') {
+      const gameStore = useGameStore.getState();
+      gameStore.startNewGame({
+        mode: game.mode,
+        player1Name: game.player1Name,
+        player2Name: game.player2Name,
+        botDifficulty: game.botDifficulty
+      });
+      setIsPaused(false);
+      return;
+    }
+
+    // Oyun devam ediyorsa onay iste
+    if (window.confirm(t('menu.confirmRestart'))) {
+      const gameStore = useGameStore.getState();
+      gameStore.startNewGame({
+        mode: game.mode,
+        player1Name: game.player1Name,
+        player2Name: game.player2Name,
+        botDifficulty: game.botDifficulty
+      });
+      setIsPaused(false);
+    }
+  };
+
   return (
     <div className="min-h-screen transition-colors duration-300" style={{
       background: theme === 'dark'
@@ -84,6 +113,13 @@ const App: React.FC = () => {
 
             {/* Sağ: Kontrol Butonları */}
             <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
+              <button
+                onClick={handleRefresh}
+                className="btn btn-success px-2 sm:px-3 md:px-4 py-1 sm:py-2 text-xs sm:text-sm"
+              >
+                <span className="hidden sm:inline">🔄 {t('menu.refresh')}</span>
+                <span className="sm:hidden">🔄</span>
+              </button>
               <button
                 onClick={handlePause}
                 className="btn btn-secondary px-2 sm:px-3 md:px-4 py-1 sm:py-2 text-xs sm:text-sm"
