@@ -55,6 +55,7 @@ export interface MoveResult {
   setWinner?: Player | 'draw';
   message?: string;
   rule?: string; // Hangi kuralın uygulandığı
+  stoneMoves?: number[]; // Her taşın düştüğü kuyu indeksleri (ses için)
 }
 
 /**

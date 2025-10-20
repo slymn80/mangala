@@ -124,6 +124,7 @@ export function applyMove(gameState: GameState, pitIndex: number): MoveResult {
   let currentPitIndex = pitIndex;
   let lastPitIndex = -1;
   const opponentTreasure = getOpponentTreasure(player);
+  const stoneMoves: number[] = []; // Her taşın düştüğü kuyu
 
   // KURAL 14: Tek taş özel durumu
   // Eğer tek taş varsa, aldığı kuyuya bırakmadan sağa doğru devam eder
@@ -134,6 +135,7 @@ export function applyMove(gameState: GameState, pitIndex: number): MoveResult {
     newBoard.pits[pitIndex]++;
     stonesInHand--;
     lastPitIndex = pitIndex;
+    stoneMoves.push(pitIndex); // Ses için kaydet
   }
 
   // Kalan taşları saat tersi yönde (sağa) dağıt
@@ -148,6 +150,7 @@ export function applyMove(gameState: GameState, pitIndex: number): MoveResult {
     newBoard.pits[currentPitIndex]++;
     stonesInHand--;
     lastPitIndex = currentPitIndex;
+    stoneMoves.push(currentPitIndex); // Ses için kaydet
   }
 
   // Hamle sonuçlarını analiz et
@@ -204,7 +207,8 @@ export function applyMove(gameState: GameState, pitIndex: number): MoveResult {
     capturedStones,
     setFinished,
     setWinner: setFinished ? winner : undefined,
-    rule: ruleApplied
+    rule: ruleApplied,
+    stoneMoves // Her taşın düştüğü kuyu indeksleri
   };
 }
 

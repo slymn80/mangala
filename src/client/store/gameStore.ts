@@ -106,6 +106,16 @@ export const useGameStore = create<GameStore>((set, get) => ({
       return;
     }
 
+    // Her taş hareketi için bubble pop sesi çal
+    const { soundEnabled, volume } = get();
+    if (result.stoneMoves && result.stoneMoves.length > 0 && soundEnabled) {
+      result.stoneMoves.forEach((_, index) => {
+        setTimeout(() => {
+          playSound('/assets/sounds/bubble-pop-04-323580.mp3', volume, soundEnabled);
+        }, index * 150); // Her taş arası 150ms gecikme
+      });
+    }
+
     // Game state güncelle
     const updatedSet: SetState = {
       ...currentSet,
