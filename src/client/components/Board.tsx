@@ -170,20 +170,17 @@ const Board: React.FC = () => {
         <div className="card text-center p-3 md:p-4 min-w-[120px]">
           <p className="text-xs sm:text-sm dark:text-gray-400 text-gray-600 mb-1">{game.player1Name}</p>
           <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-500">{game.scores.player1}</p>
-          {currentPlayer === 'player1' && (
-            <p className="text-xs text-yellow-500 mt-1 animate-pulse">⭐ {t('game.yourTurn')}</p>
-          )}
         </div>
-        <div className="card text-center p-3 md:p-4 min-w-[100px]">
+        <div className="card text-center p-3 md:p-4 min-w-[120px]">
           <p className="text-xs sm:text-sm dark:text-gray-400 text-gray-600 mb-1">{t('score.set')}</p>
           <p className="text-xl sm:text-2xl md:text-3xl font-bold dark:text-white text-gray-900">{game.currentSetIndex + 1} / 5</p>
+          <p className="text-xs sm:text-sm text-yellow-500 mt-2 animate-pulse font-semibold">
+            Sıra {currentPlayer === 'player1' ? game.player1Name : game.player2Name}'de
+          </p>
         </div>
         <div className="card text-center p-3 md:p-4 min-w-[120px]">
           <p className="text-xs sm:text-sm dark:text-gray-400 text-gray-600 mb-1">{game.player2Name}</p>
           <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-red-500">{game.scores.player2}</p>
-          {currentPlayer === 'player2' && (
-            <p className="text-xs text-yellow-500 mt-1 animate-pulse">⭐ {t('game.yourTurn')}</p>
-          )}
         </div>
       </div>
 
